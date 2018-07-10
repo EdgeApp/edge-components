@@ -11,20 +11,67 @@
     "Kevin Sullivan <kevin@edge.app>"
   ],
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "precommit": "yarn format",
+    "commit": "git cz",
+    "flow": "flow",
+    "format": "sort-package-json; import-sort -l --write '*.js' 'storybook/**/*.js'; lint-staged",
+    "jest": "jest",
+    "lint": "eslint '*.js' 'src/**/*.js'",
+    "start": "storybook start -p 7007",
     "test": "jest"
+  },
+  "prettier": {
+    "printWidth": 120
+  },
+  "jest": {
+    "preset": "react-native"
   },
   "dependencies": {
     "react": "16.3.1",
     "react-native": "0.55.3"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.4.8",
+    "@storybook/addon-knobs": "^3.4.8",
+    "@storybook/addon-links": "^3.4.8",
+    "@storybook/addons": "^3.4.8",
+    "@storybook/react-native": "^3.4.8",
+    "babel-core": "^6.26.2",
+    "babel-eslint": "^8.2.5",
     "babel-jest": "22.4.3",
     "babel-preset-react-native": "4.0.0",
+    "babel-runtime": "^6.26.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-react-native": "^3.2.1",
+    "eslint-plugin-standard": "^3.1.0",
+    "husky": "^0.14.3",
+    "import-sort-cli": "^5.0.0",
+    "import-sort-parser-babylon": "^5.0.0",
+    "import-sort-style-module": "^5.0.0",
     "jest": "22.4.3",
-    "react-test-renderer": "16.3.1"
+    "lint-staged": "^7.2.0",
+    "prettier-eslint-cli": "^4.7.1",
+    "prop-types": "^15.6.1",
+    "react-dom": "16.3.1",
+    "react-test-renderer": "16.3.1",
+    "sort-package-json": "^1.15.0",
+    "storybook-addon-jsx": "^5.3.0"
   },
-  "jest": {
-    "preset": "react-native"
+  "importSort": {
+    ".js, .es": {
+      "parser": "babylon",
+      "style": "module"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier-eslint --write",
+      "git add"
+    ]
   }
 }
