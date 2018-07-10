@@ -13,7 +13,6 @@
   "main": "src/index.js",
   "scripts": {
     "precommit": "yarn format",
-    "commit": "git cz",
     "flow": "flow",
     "format": "sort-package-json; import-sort -l --write '*.js' 'storybook/**/*.js'; lint-staged",
     "jest": "jest",
@@ -59,7 +58,7 @@
     "prop-types": "^15.6.1",
     "react": "16.3.1",
     "react-dom": "16.3.1",
-    "react-native": "0.55.3",
+    "react-native": "0.51.0",
     "react-test-renderer": "16.3.1",
     "sort-package-json": "^1.15.0",
     "storybook-addon-jsx": "^5.3.0"
