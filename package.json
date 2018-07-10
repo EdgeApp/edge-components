@@ -1,7 +1,15 @@
 {
-  "name": "edgecomponents",
+  "name": "edge-components",
   "version": "0.0.1",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Airbitz/edge-components.git"
+  },
+  "license": "MIT",
+  "author": "Edge, Inc.",
+  "contributors": [
+    "Kevin Sullivan <kevin@edge.app>"
+  ],
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
