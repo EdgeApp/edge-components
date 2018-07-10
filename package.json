@@ -28,8 +28,6 @@
     "preset": "react-native"
   },
   "dependencies": {
-    "react": "16.3.1",
-    "react-native": "0.55.3",
     "react-native-linear-gradient": "^2.4.0"
   },
   "devDependencies": {
@@ -59,7 +57,9 @@
     "lint-staged": "^7.2.0",
     "prettier-eslint-cli": "^4.7.1",
     "prop-types": "^15.6.1",
+    "react": "16.3.1",
     "react-dom": "16.3.1",
+    "react-native": "0.55.3",
     "react-test-renderer": "16.3.1",
     "sort-package-json": "^1.15.0",
     "storybook-addon-jsx": "^5.3.0"
