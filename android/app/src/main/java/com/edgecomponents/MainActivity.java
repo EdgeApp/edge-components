@@ -1,4 +1,4 @@
-package com.edgecomponents;
+package com.edge-components;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "edgecomponents";
+        return "edge-components";
     }
 }
