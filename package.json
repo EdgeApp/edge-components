@@ -5,6 +5,7 @@
     "type": "git",
     "url": "git@github.com:Airbitz/edge-components.git"
   },
+  "main": "src/index.js",
   "license": "MIT",
   "author": "Edge, Inc.",
   "contributors": [
