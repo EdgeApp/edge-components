@@ -7,13 +7,21 @@ import { StyleSheet, View } from 'react-native'
 import { Header } from './Header.js'
 import { Body } from './Body.js'
 import { Footer } from './Footer.js'
+import { Row } from './Row.js'
+import { Item } from './Item.js'
+import { Padding } from './Padding.js'
 
-const rawStyles = {
+export const debug = {
+  // borderColor: 'red', borderWidth: 1
+}
+
+export const rawStyles = {
   scene: {
+    ...debug,
     flex: 1
   }
 }
-const styles = StyleSheet.create(rawStyles)
+export const styles = StyleSheet.create(rawStyles)
 
 export type Props = {
   children?: Node,
@@ -21,13 +29,21 @@ export type Props = {
   style?: StyleSheet.Styles
 }
 export class Scene extends Component<Props> {
+  static Padding = Padding
   static Header = Header
   static Body = Body
   static Footer = Footer
+  static Row = Row
+  static Item = Item
 
   render () {
-    const { children, style } = this.props
-    return <View style={[styles.scene, style]}>{children}</View>
+    const { children, style, ...props } = this.props
+
+    return (
+      <View style={[styles.scene, style]} {...props}>
+        {children}
+      </View>
+    )
   }
 }
 

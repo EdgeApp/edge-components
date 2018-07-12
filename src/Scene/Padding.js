@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import type { Node } from 'react'
-import { StyleSheet, Text as RNText, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 import THEME from '../edge-theme.js'
 
@@ -11,24 +11,27 @@ const debug = {
 }
 
 export const rawStyles = {
-  footer: {
-    alignItems: 'stretch',
-    justifyContent: 'center'
+  padding: {
+    ...debug
   }
 }
 export const styles = StyleSheet.create(rawStyles)
 
-export type FooterProps = {
+export type PaddingProps = {
   children?: Node,
   // $FlowFixMe
   style?: StyleSheet.Styles
 }
-export class Footer extends Component<FooterProps> {
+export class Padding extends Component<PaddingProps> {
   render () {
-    const { children, style } = this.props
+    const { children, style, ...props } = this.props
 
-    return <View style={[styles.footer, style]}>{children}</View>
+    return (
+      <View style={[styles.padding, style]} {...props}>
+        {children}
+      </View>
+    )
   }
 }
 
-export default Footer
+export default Padding
