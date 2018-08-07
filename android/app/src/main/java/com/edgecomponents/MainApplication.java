@@ -1,4 +1,4 @@
-package com.edge-components;
+package com.edgecomponents;
 
 import android.app.Application;
 

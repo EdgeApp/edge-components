@@ -21,5 +21,5 @@ class StorybookUIHMRRoot extends Component<{}> {
   }
 }
 
-AppRegistry.registerComponent('edge-components', () => StorybookUIHMRRoot)
+AppRegistry.registerComponent('edgecomponents', () => StorybookUIHMRRoot)
 export default StorybookUIHMRRoot

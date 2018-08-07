@@ -14,11 +14,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React Native!"
 
-@interface edge-componentsTests : XCTestCase
+@interface edgecomponentsTests : XCTestCase
 
 @end
 
-@implementation edge-componentsTests
+@implementation edgecomponentsTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {
