@@ -15,7 +15,8 @@ export const rawStyles = {
     ...debug,
     // fontFamily: THEME.FONTS.DEFAULT,
     color: THEME.COLORS.WHITE,
-    fontSize: 14
+    fontSize: 14,
+    backgroundColor: THEME.COLORS.TRANSPARENT
   },
   body: {
     ...debug,

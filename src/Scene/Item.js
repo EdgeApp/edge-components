@@ -12,8 +12,9 @@ const debug = {
 
 export const rawStyles = {
   item: {
-    ...debug,
-    flex: 1
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...debug
   }
 }
 export const styles = StyleSheet.create(rawStyles)

@@ -16,12 +16,14 @@ const styles = {
   header: {
     // fontFamily: THEME.FONTS.DEFAULT,
     color: THEME.COLORS.WHITE,
+    backgroundColor: THEME.COLORS.TRANSPARENT,
     fontSize: 18,
     marginBottom: 18
   },
   content: {
     // fontFamily: THEME.FONTS.DEFAULT,
     color: THEME.COLORS.WHITE,
+    backgroundColor: THEME.COLORS.TRANSPARENT,
     fontSize: 12,
     marginBottom: 10,
     lineHeight: 18,

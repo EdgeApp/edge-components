@@ -32,26 +32,62 @@ storiesOf('Scene', module)
       <Gradient>
         <Scene style={[debugStyle, paddingStyle]}>
           {header && (
-            <Header style={debugStyle}>
-              <Header.Text style={debugStyle}>
-                <Text style={debugStyle}>{text('Header Text', 'This is some header text')}</Text>
-              </Header.Text>
-            </Header>
+            <Scene.Header style={debugStyle}>
+              <Scene.Item style={[debugStyle, { height: 50 }]}>
+                <Scene.Header.Text style={debugStyle}>
+                  <Text style={debugStyle}>{text('Header Text', 'This is some header text')}</Text>
+                </Scene.Header.Text>
+              </Scene.Item>
+            </Scene.Header>
           )}
 
           {body && (
             <Body style={[debugStyle, flexStyle]}>
-              <Body.Text style={debugStyle}>
-                <Text style={debugStyle}>{text('Body Text', 'This is some body text')}</Text>
-              </Body.Text>
+              <Scene.Row style={debugStyle}>
+                <Scene.Item style={[debugStyle, { height: 50 }]}>
+                  <Body.Text numberOfLines={4} style={debugStyle}>
+                    <Text style={debugStyle}>{text('Body Text', 'This is some body text')}</Text>
+                  </Body.Text>
+
+                  <Body.Text style={debugStyle}>
+                    <Text style={debugStyle}>{text('Body Text', 'This is some body text')}</Text>
+                  </Body.Text>
+                </Scene.Item>
+              </Scene.Row>
+
+              <Scene.Row style={debugStyle}>
+                <Scene.Item style={[debugStyle, { height: 50 }]}>
+                  <Body.Text style={debugStyle}>
+                    <Text style={debugStyle}>{text('Body Text', 'This is some body text')}</Text>
+                  </Body.Text>
+
+                  <Body.Text style={debugStyle}>
+                    <Text style={debugStyle}>{text('Body Text', 'This is some body text')}</Text>
+                  </Body.Text>
+                </Scene.Item>
+              </Scene.Row>
+
+              <Scene.Row style={debugStyle}>
+                <Scene.Item style={[debugStyle, { height: 50 }]}>
+                  <Body.Text style={debugStyle}>
+                    <Text style={debugStyle}>{text('Body Text', 'This is some body text')}</Text>
+                  </Body.Text>
+
+                  <Body.Text style={debugStyle}>
+                    <Text style={debugStyle}>{text('Body Text', 'This is some body text')}</Text>
+                  </Body.Text>
+                </Scene.Item>
+              </Scene.Row>
             </Body>
           )}
 
           {footer && (
             <Footer style={debugStyle}>
-              <Footer.Text style={debugStyle}>
-                <Text style={debugStyle}>{text('Footer Text', 'This is some footer text')}</Text>
-              </Footer.Text>
+              <Scene.Item style={[debugStyle, { height: 50 }]}>
+                <Footer.Text style={debugStyle}>
+                  <Text style={debugStyle}>{text('Footer Text', 'This is some footer text')}</Text>
+                </Footer.Text>
+              </Scene.Item>
             </Footer>
           )}
         </Scene>

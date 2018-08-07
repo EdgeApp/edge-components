@@ -14,7 +14,8 @@ export const rawStyles = {
   row: {
     ...debug,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    width: '100%',
     flexDirection: 'row'
   }
 }
