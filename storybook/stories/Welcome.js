@@ -1,11 +1,63 @@
 // @flow
 
-import { setAddon, storiesOf } from '@storybook/react-native'
 import React from 'react'
-import JSXAddon from 'storybook-addon-jsx'
+import { StyleSheet } from 'react-native'
 
-import Welcome from '../helpers/Welcome.js'
+import Layout, { Header, Body, Row, Spacer } from '../../src/Layout/Layout.js'
+import { Text } from '../../src/Text/Text.js'
+import { Gradient } from '../../src/Gradient/Gradient.js'
 
-setAddon(JSXAddon)
+export const debug = {
+  // borderColor: 'red', borderWidth: 1
+}
 
-storiesOf('Welcome', module).addWithJSX('Edge Components', () => <Welcome />)
+export const rawStyles = {
+  layout: {},
+  header: {},
+  body: {},
+  topRow: {},
+  middleRow: {},
+  bottomRow: {},
+  item: {},
+  text: {},
+  debug
+}
+
+export const styles = StyleSheet.create(rawStyles)
+
+export const welcomeStory = () => {
+  return (
+    <Layout>
+      <Gradient>
+        <Header paddingVertical={14} shrink>
+          <Text H4>Edge Components</Text>
+        </Header>
+
+        <Body top left paddingHorizontal={24}>
+          <Row shrink>
+            <Text medium top left>
+              This is a UI component catalog and development environment for Edge.
+            </Text>
+          </Row>
+
+          <Spacer height={44} />
+
+          <Row shrink>
+            <Text medium top left>
+              Here you can display and interact with your UI components as stories. A story is a single state of one or
+              more UI components. You can have as many stories as you want.
+            </Text>
+          </Row>
+
+          <Spacer height={44} />
+
+          <Row shrink>
+            <Text medium top left>
+              In other words a story is like a visual test case.
+            </Text>
+          </Row>
+        </Body>
+      </Gradient>
+    </Layout>
+  )
+}

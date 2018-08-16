@@ -2,6 +2,6 @@
 
 import Gradient from './Gradient/Gradient.js'
 
-import Scene from './Scene/Scene.js'
+import Layout from './Layout/Layout.js'
 
-export { Gradient, Scene }
+export { Gradient, Layout }

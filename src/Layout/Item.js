@@ -4,34 +4,36 @@ import React, { Component } from 'react'
 import type { Node } from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import THEME from '../edge-theme.js'
-
 const debug = {
   // borderColor: 'red', borderWidth: 1
 }
 
 export const rawStyles = {
-  padding: {
-    ...debug
+  item: {
+    ...debug,
+    flex: 1
+    // alignItems: 'center',
+    // justifyContent: 'center'
   }
 }
 export const styles = StyleSheet.create(rawStyles)
 
-export type PaddingProps = {
+export type ItemProps = {
   children?: Node,
   // $FlowFixMe
   style?: StyleSheet.Styles
 }
-export class Padding extends Component<PaddingProps> {
+export class Item extends Component<ItemProps> {
   render () {
-    const { children, style, ...props } = this.props
+    const { children, style, debug, ...props } = this.props
+    const debugStyle = debug ? { borderColor: 'red', borderWidth: 1 } : {}
 
     return (
-      <View style={[styles.padding, style]} {...props}>
+      <View style={[styles.item, style, debugStyle]} {...props}>
         {children}
       </View>
     )
   }
 }
 
-export default Padding
+export default Item

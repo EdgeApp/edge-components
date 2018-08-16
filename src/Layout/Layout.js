@@ -9,14 +9,14 @@ import { Body } from './Body.js'
 import { Footer } from './Footer.js'
 import { Row } from './Row.js'
 import { Item } from './Item.js'
-import { Padding } from './Padding.js'
+import { Spacer } from './Spacer.js'
 
 export const debug = {
   // borderColor: 'red', borderWidth: 1
 }
 
 export const rawStyles = {
-  scene: {
+  layout: {
     ...debug,
     flex: 1
   }
@@ -28,24 +28,25 @@ export type Props = {
   // $FlowFixMe
   style?: StyleSheet.Styles
 }
-export class Scene extends Component<Props> {
-  static Padding = Padding
+export class Layout extends Component<Props> {
   static Header = Header
   static Body = Body
   static Footer = Footer
   static Row = Row
   static Item = Item
+  static Spacer = Spacer
 
   render () {
-    const { children, style, ...props } = this.props
+    const { children, style, debug, ...props } = this.props
+    const debugStyle = debug ? { borderColor: 'red', borderWidth: 1 } : {}
 
     return (
-      <View style={[styles.scene, style]} {...props}>
+      <View style={[styles.layout, style, debugStyle]} {...props}>
         {children}
       </View>
     )
   }
 }
 
-export { Header, Body, Footer }
-export default Scene
+export { Header, Body, Footer, Item, Row, Spacer }
+export default Layout

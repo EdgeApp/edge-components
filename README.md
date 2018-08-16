@@ -36,7 +36,7 @@ react-native run-android
   - Add new component to `src/`
 - Setup new story
   - Add new story to `storybook/`
-  - Add a `<Scene>`
+  - Add a `<Layout>`
   - Add `<Header>`, `<Body>`, `<Footer>` (optional)
   - Add new component
 - Tweak new component

@@ -61,8 +61,11 @@ export type Props = {}
 export class TabBar extends Component<Props> {
   static Text = Text
   render () {
+    const { debug, ...props } = this.props
+    const debugStyle = debug ? { borderColor: 'red', borderWidth: 1 } : {}
+    
     return (
-      <View style={[styles.tabBar, debugStyle]}>
+      <View style={[styles.tabBar, debugStyle]} {...props}>
         <Tab>
           <Text>Tab 1</Text>
         </Tab>
