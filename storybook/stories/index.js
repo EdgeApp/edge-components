@@ -8,6 +8,7 @@ import { welcomeStory } from './welcome.js'
 import { layoutStory } from './layout.js'
 import { typicalLayoutStory } from './typicalLayout.js'
 import { footerWithButtonsStory } from './footerWithButtons.js'
+import { rowStory } from './row.js'
 import { gradientStory } from './gradient.js'
 
 setAddon(JSXAddon)
@@ -20,6 +21,7 @@ storiesOf('Layout', module)
   .addWithJSX('Default, Debug Borders', layoutStory)
   .addWithJSX('Typical Layout', typicalLayoutStory)
   .addWithJSX('Footer With Buttons', footerWithButtonsStory)
+  .addWithJSX('Row', rowStory)
 
 storiesOf('Gradient', module)
   .addDecorator(withKnobs)

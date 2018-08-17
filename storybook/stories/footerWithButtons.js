@@ -52,9 +52,9 @@ export const footerWithButtonsStory = () => {
 
         <Body paddingHorizontal={24} paddingVertical={24} debug={debug} />
 
-        <Footer shrink style={{ backgroundColor: 'purple' }} spaceAround paddingHorizontal={8} paddingVertical={8} debug={debug}>
+        <Footer shrink style={{ backgroundColor: 'yellow' }} spaceAround paddingHorizontal={8} paddingVertical={8} debug={debug}>
           {R.intersperse(
-            <Spacer width={spacerWidth} />,
+            <Spacer debug={debug} width={spacerWidth} />,
             Array(numberOfButtons)
               .fill('')
               .map((number, index) => (
@@ -67,7 +67,7 @@ export const footerWithButtonsStory = () => {
                     height: buttonHeight,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: 'red',
+                    backgroundColor: 'blue',
                     borderRadius: 12
                   }}
                 >
