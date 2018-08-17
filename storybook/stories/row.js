@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { boolean, number, text } from '@storybook/addon-knobs/react'
+import { boolean, number, text, selectV2 } from '@storybook/addon-knobs/react'
 
 import Gradient from '../../src/Gradient/Gradient.js'
 import Layout, { Body, Footer, Header, Row } from '../../src/Layout/Layout.js'
@@ -137,10 +137,10 @@ export const rowStory = () => {
                     .map((number, index) => (
                       <Text P 
                         key={index}
-                        left={ROW.textAlign === 'left'} 
-                        right={ROW.textAlign === 'right'} 
-                        justify={ROW.textAlign === 'justify'} 
-                        auto={ROW.textAlign === 'auto'} 
+                        left={ROW.textAlign === 'left'}
+                        right={ROW.textAlign === 'right'}
+                        justify={ROW.textAlign === 'justify'}
+                        auto={ROW.textAlign === 'auto'}
                         debug={debug}>
                         {ROWS.text}
                       </Text>
