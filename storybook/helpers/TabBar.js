@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import type { Node } from 'react'
 import { Text as RNText, StyleSheet, View } from 'react-native'
 
+import { Spacer } from '../../src/Layout/Spacer.js'
+
 import THEME from '../../src/edge-theme.js'
 
 const debugStyle = { borderColor: 'red', borderWidth: 1 }
@@ -18,17 +20,15 @@ const rawStyles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: THEME.COLORS.PRIMARY,
-    borderWidth: 1
+    backgroundColor: THEME.COLORS.WHITE
   },
   tabBar: {
-    flexDirection: 'row',
     height: THEME.TAB_BAR.HEIGHT,
-    width: '100%',
-    alignItems: 'stretch',
-    bottom: 0,
+    flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: THEME.COLORS.WHITE
+    alignItems: 'stretch',
+    backgroundColor: THEME.COLORS.PRIMARY,
+    padding: 2
   }
 }
 const styles = StyleSheet.create(rawStyles)
@@ -69,12 +69,21 @@ export class TabBar extends Component<Props> {
         <Tab>
           <Text>Tab 1</Text>
         </Tab>
+
+        <Spacer width={2} />
+
         <Tab>
           <Text>Tab 2</Text>
         </Tab>
+
+        <Spacer width={2} />
+
         <Tab>
           <Text>Tab 3</Text>
         </Tab>
+
+        <Spacer width={2} />
+
         <Tab>
           <Text>Tab 4</Text>
         </Tab>

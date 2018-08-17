@@ -27,6 +27,7 @@
     "preset": "react-native"
   },
   "dependencies": {
+    "ramda": "^0.25.0",
     "react-native-linear-gradient": "^2.4.0"
   },
   "devDependencies": {
