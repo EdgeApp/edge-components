@@ -23,8 +23,8 @@ export const ROW = {
         Left: 'flex-start',
         Center: 'center',
         Right: 'flex-end',
-        'Space Between': 'space-between',
-        'Space Around': 'space-around'
+        'Space Around': 'space-around',
+        'Space Between': 'space-between'
       },
       'center'
     )
@@ -52,8 +52,8 @@ export const COLUMN = {
         Top: 'flex-start',
         Center: 'center',
         Bottom: 'flex-end',
-        'Space Between': 'space-between',
-        'Space Around': 'space-around'
+        'Space Around': 'space-around',
+        'Space Between': 'space-between'
       },
       'center'
     )

@@ -12,9 +12,12 @@ export const rawStyles = {
   row: {
     ...debug,
     flex: 1,
+    height: '100%',
+    width: '100%',
     flexDirection: 'row',
-    alignItems: 'stretch',
-    justifyContent: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden'
   }
 }
 export const styles = StyleSheet.create(rawStyles)
@@ -26,22 +29,50 @@ export type RowProps = {
 }
 export class Row extends Component<RowProps> {
   render () {
-    const { children, style, left, right, center, spaceAround, spaceBetween, stretchVertical, shrink, height, debug, ...props } = this.props
-    let justifyStyle = null
-    if (left) justifyStyle = { justifyContent: 'flex-start' }
-    if (center) justifyStyle = { justifyContent: 'center' }
-    if (right) justifyStyle = { justifyContent: 'flex-end' }
-    if (spaceAround) justifyStyle = { justifyContent: 'space-around' }
-    if (spaceBetween) justifyStyle = { justifyContent: 'space-between' }
+    const {
+      baseline,
+      bottom,
+      children,
+      debug,
+      height,
+      left,
+      right,
+      shrink,
+      spaceAround,
+      spaceBetween,
+      stretch,
+      style,
+      top,
+      width,
+      wrap,
+      ...props
+    } = this.props
 
-    let flexStyle = { flex: 1 }
-    if (height) flexStyle = { flex: 0 }
+    let justifyContent = null
+    if (left) justifyContent = { justifyContent: 'flex-start' }
+    if (right) justifyContent = { justifyContent: 'flex-end' }
+    if (spaceAround) justifyContent = { justifyContent: 'space-around' }
+    if (spaceBetween) justifyContent = { justifyContent: 'space-between' }
+
+    let alignItems = null
+    if (top) alignItems = { alignItems: 'flex-start' }
+    if (bottom) alignItems = { alignItems: 'flex-end' }
+    if (stretch) alignItems = { alignItems: 'stretch' }
+    if (baseline) alignItems = { alignItems: 'baseline' }
+
+    let flexStyle = null
+    if (height || width) flexStyle = { flex: 0 }
     if (shrink) flexStyle = { flex: -1 }
+
+    let wrapStyle = null
+    if (wrap) wrapStyle = { flexWrap: 'wrap' }
+
+    const sizeStyle = { height, width }
 
     const debugStyle = debug ? { borderColor: 'red', borderWidth: 1 } : {}
 
     return (
-      <View style={[styles.row, style, justifyStyle, flexStyle, debugStyle]} height={height} {...props}>
+      <View style={[styles.row, style, alignItems, justifyContent, flexStyle, wrapStyle, sizeStyle, debugStyle]} {...props}>
         {children}
       </View>
     )

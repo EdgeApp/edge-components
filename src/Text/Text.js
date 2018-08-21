@@ -89,9 +89,18 @@ export class Text extends Component<Props> {
       left,
       right,
       justify,
+      top,
+      bottom,
+      stretch,
+      baseline,
+      shrink,
+      height,
+      width,
       auto,
       spaceAround,
       spaceBetween,
+      flex,
+      color,
       debug,
       ...props
     } = this.props
@@ -116,10 +125,28 @@ export class Text extends Component<Props> {
     if (justify) textAlign = { textAlign: 'justify' }
     if (auto) textAlign = { textAlign: 'auto' }
 
+    let justifyContent = null
+    if (top) justifyContent = { justifyContent: 'flex-start' }
+    if (bottom) justifyContent = { justifyContent: 'flex-end' }
+    if (spaceAround) justifyContent = { justifyContent: 'space-around' }
+    if (spaceBetween) justifyContent = { justifyContent: 'space-between' }
+
+    let alignItems = null
+    if (left) alignItems = { alignItems: 'flex-start' }
+    if (right) alignItems = { alignItems: 'flex-end' }
+    if (stretch) alignItems = { alignItems: 'stretch' }
+    if (baseline) alignItems = { alignItems: 'baseline' }
+
+    let flexStyle = null
+    if (height || width) flexStyle = { flex: 0 }
+    if (shrink) flexStyle = { flex: -1 }
+
+    const colorStyle = color ? { color } : null
+
     const debugStyle = debug ? { borderColor: 'red', borderWidth: 1 } : {}
 
     return (
-      <RNText style={[styles.text, textStyle, style, textAlign, debugStyle]} {...props}>
+      <RNText style={[styles.text, style, textStyle, flexStyle, alignItems, justifyContent, textAlign, colorStyle, debugStyle]} height={height} width={width} {...props}>
         {children}
       </RNText>
     )

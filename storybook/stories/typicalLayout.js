@@ -85,8 +85,8 @@ export const typicalLayoutStory = () => {
   const tabBar = true
 
   return (
-    <Layout debug={debug}>
-      <Gradient>
+    <Gradient>
+      <Layout debug={debug}>
         {HEADER.isEnabled && (
           <Header
             paddingVertical={HEADER.paddingVertical}
@@ -131,10 +131,24 @@ export const typicalLayoutStory = () => {
                   alignItems={ROWS.alignItems}
                   debug={debug}
                 >
-                  <Text P left={BODY.textAlign === 'left'} right={BODY.textAlign === 'right'} justify={BODY.textAlign === 'justify'} auto={BODY.textAlign === 'auto'} debug={debug}>
+                  <Text
+                    P
+                    left={BODY.textAlign === 'left'}
+                    right={BODY.textAlign === 'right'}
+                    justify={BODY.textAlign === 'justify'}
+                    auto={BODY.textAlign === 'auto'}
+                    debug={debug}
+                  >
                     {BODY.text}
                   </Text>
-                  <Text P left={BODY.textAlign === 'left'} right={BODY.textAlign === 'right'} justify={BODY.textAlign === 'justify'} auto={BODY.textAlign === 'auto'} debug={debug}>
+                  <Text
+                    P
+                    left={BODY.textAlign === 'left'}
+                    right={BODY.textAlign === 'right'}
+                    justify={BODY.textAlign === 'justify'}
+                    auto={BODY.textAlign === 'auto'}
+                    debug={debug}
+                  >
                     {BODY.text}
                   </Text>
                 </Row>
@@ -157,7 +171,7 @@ export const typicalLayoutStory = () => {
         )}
 
         {tabBar && <TabBar debug={debug} />}
-      </Gradient>
-    </Layout>
+      </Layout>
+    </Gradient>
   )
 }

@@ -10,6 +10,7 @@ import { typicalLayoutStory } from './typicalLayout.js'
 import { footerWithButtonsStory } from './footerWithButtons.js'
 import { rowStory } from './row.js'
 import { gradientStory } from './gradient.js'
+import { deleteMeStory } from './deleteMe.js'
 
 setAddon(JSXAddon)
 
@@ -22,6 +23,9 @@ storiesOf('Layout', module)
   .addWithJSX('Typical Layout', typicalLayoutStory)
   .addWithJSX('Footer With Buttons', footerWithButtonsStory)
   .addWithJSX('Row', rowStory)
+
+storiesOf('DeleteMe', module)
+  .addWithJSX('DeleteMe', deleteMeStory)
 
 storiesOf('Gradient', module)
   .addDecorator(withKnobs)

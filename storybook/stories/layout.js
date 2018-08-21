@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native'
 import { boolean, number, text } from '@storybook/addon-knobs/react'
 
 import Gradient from '../../src/Gradient/Gradient.js'
-import Layout, { Body, Footer, Header, Row } from '../../src/Layout/Layout.js'
+import Layout, { Body, Footer, Header, Item, Row } from '../../src/Layout/Layout.js'
 import { TabBar } from '../helpers/TabBar.js'
 import { Text } from '../../src/Text/Text.js'
 
@@ -85,79 +85,87 @@ export const layoutStory = () => {
   const tabBar = boolean('TabBar', true)
 
   return (
-    <Layout debug={debug}>
-      <Gradient>
-        {HEADER.isEnabled && (
-          <Header
-            paddingVertical={HEADER.paddingVertical}
-            paddingHorizontal={HEADER.paddingHorizontal}
-            height={HEADER.height}
-            shrink={HEADER.shrink}
-            justifyContent={HEADER.justifyContent}
-            alignItems={HEADER.alignItems}
-            debug={debug}
-          >
-            <Text H4 debug={debug}>
-              {HEADER.textLeft}
-            </Text>
-
-            <Text H4 debug={debug}>
-              {HEADER.textCenter}
-            </Text>
-
-            <Text H4 debug={debug}>
-              {HEADER.textRight}
-            </Text>
-          </Header>
-        )}
-
-        {BODY.isEnabled && (
-          <Body
-            alignItems={BODY.alignItems}
-            justifyContent={BODY.justifyContent}
-            shrink={BODY.shrink}
-            paddingHorizontal={BODY.paddingHorizontal}
-            paddingVertical={BODY.paddingVertical}
-            debug={debug}
-          >
-            {Array(ROWS.numberOfRows)
-              .fill('')
-              .map((number, index) => (
-                <Row
-                  key={index}
-                  height={ROWS.height}
-                  shrink={ROWS.shrink}
-                  justifyContent={ROWS.justifyContent}
-                  alignItems={ROWS.alignItems}
-                  debug={debug}
-                >
-                  <Text P left={BODY.textAlign === 'left'} right={BODY.textAlign === 'right'} justify={BODY.textAlign === 'justify'} auto={BODY.textAlign === 'auto'} debug={debug}>
-                    {BODY.text}
-                  </Text>
-                  <Text P left={BODY.textAlign === 'left'} right={BODY.textAlign === 'right'} justify={BODY.textAlign === 'justify'} auto={BODY.textAlign === 'auto'} debug={debug}>
-                    {BODY.text}
-                  </Text>
-                </Row>
-              ))}
-          </Body>
-        )}
-
-        {FOOTER.isEnabled && (
-          <Footer
-            shrink={FOOTER.shrink}
-            justifyContent={FOOTER.justifyContent}
-            alignItems={FOOTER.alignItems}
-            height={FOOTER.height}
-            paddingHorizontal={FOOTER.paddingHorizontal}
-            paddingVertical={FOOTER.paddingVertical}
-            debug={debug}
-          >
-            <Text debug={debug}>{FOOTER.text}</Text>
-          </Footer>
-        )}
-
-        {tabBar && <TabBar debug={debug} />}
-      </Gradient>
-    </Layout>
+    <Gradient>
+      <Layout debug={debug}>
+        <Item height={50} width={50} backgroundColor={'red'} />
+      </Layout>
+    </Gradient>
   )
 }
+
+// {HEADER.isEnabled && (
+//   <Header
+//     paddingVertical={HEADER.paddingVertical}
+//     paddingHorizontal={HEADER.paddingHorizontal}
+//     height={HEADER.height}
+//     shrink={HEADER.shrink}
+//     justifyContent={HEADER.justifyContent}
+//     alignItems={HEADER.alignItems}
+//     debug={debug}
+//   >
+//     <Item>
+//       <Text H4 shrink debug={debug}>
+//         {HEADER.textLeft}
+//       </Text>
+//     </Item>
+
+//     <Item>
+//       <Text H4 shrink debug={debug}>
+//         {HEADER.textCenter}
+//       </Text>
+//     </Item>
+
+//     <Item>
+//       <Text H4 shrink debug={debug}>
+//         {HEADER.textRight}
+//       </Text>
+//     </Item>
+//   </Header>
+// )}
+
+// {BODY.isEnabled && (
+//   <Body
+//     alignItems={BODY.alignItems}
+//     justifyContent={BODY.justifyContent}
+//     shrink={BODY.shrink}
+//     paddingHorizontal={BODY.paddingHorizontal}
+//     paddingVertical={BODY.paddingVertical}
+//     debug={debug}
+//   >
+//     {Array(ROWS.numberOfRows)
+//       .fill('')
+//       .map((number, index) => (
+//         <Row
+//           key={index}
+//           height={ROWS.height}
+//           shrink={ROWS.shrink}
+//           justifyContent={ROWS.justifyContent}
+//           alignItems={ROWS.alignItems}
+//           debug={debug}
+//         >
+//           <Text P shrink left={BODY.textAlign === 'left'} right={BODY.textAlign === 'right'} justify={BODY.textAlign === 'justify'} auto={BODY.textAlign === 'auto'} debug={debug}>
+//             {BODY.text}
+//           </Text>
+//           <Text P shrink left={BODY.textAlign === 'left'} right={BODY.textAlign === 'right'} justify={BODY.textAlign === 'justify'} auto={BODY.textAlign === 'auto'} debug={debug}>
+//             {BODY.text}
+//           </Text>
+//         </Row>
+//       ))}
+//   </Body>
+// )}
+
+// {FOOTER.isEnabled && (
+//   <Footer
+//     shrink={FOOTER.shrink}
+//     justifyContent={FOOTER.justifyContent}
+//     alignItems={FOOTER.alignItems}
+//     height={FOOTER.height}
+//     paddingHorizontal={FOOTER.paddingHorizontal}
+//     paddingVertical={FOOTER.paddingVertical}
+//     debug={debug}
+//   >
+//     <Text shrink debug={debug}>{FOOTER.text}</Text>
+//   </Footer>
+// )}
+
+// {tabBar && <TabBar debug={debug} />}

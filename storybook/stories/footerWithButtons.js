@@ -42,8 +42,8 @@ export const footerWithButtonsStory = () => {
   const spacerWidth = number('Spacer Width', 8)
 
   return (
-    <Layout debug={debug}>
-      <Gradient>
+    <Gradient>
+      <Layout debug={debug}>
         <Header height={60} debug={debug}>
           <Text H4 debug={debug}>
             Header Text
@@ -52,7 +52,14 @@ export const footerWithButtonsStory = () => {
 
         <Body paddingHorizontal={24} paddingVertical={24} debug={debug} />
 
-        <Footer shrink style={{ backgroundColor: 'yellow' }} spaceAround paddingHorizontal={8} paddingVertical={8} debug={debug}>
+        <Footer
+          shrink
+          style={{ backgroundColor: 'yellow' }}
+          spaceAround
+          paddingHorizontal={8}
+          paddingVertical={8}
+          debug={debug}
+        >
           {R.intersperse(
             <Spacer debug={debug} width={spacerWidth} />,
             Array(numberOfButtons)
@@ -79,7 +86,7 @@ export const footerWithButtonsStory = () => {
           )}
         </Footer>
         <TabBar debug={debug} />
-      </Gradient>
-    </Layout>
+      </Layout>
+    </Gradient>
   )
 }

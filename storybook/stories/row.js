@@ -2,14 +2,15 @@
 
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { boolean, number, text, selectV2 } from '@storybook/addon-knobs/react'
+import { boolean, number } from '@storybook/addon-knobs/react'
 
 import Gradient from '../../src/Gradient/Gradient.js'
-import Layout, { Body, Footer, Header, Row } from '../../src/Layout/Layout.js'
-import { TabBar } from '../helpers/TabBar.js'
+import Layout, { Body, Row, Item } from '../../src/Layout/Layout.js'
 import { Text } from '../../src/Text/Text.js'
 
-import { ROW, COLUMN, TEXT } from '../helpers/utils.js'
+import { ROW, COLUMN } from '../helpers/utils.js'
+
+console.disableYellowBox = true
 
 export const debug = {
   // borderColor: 'red', borderWidth: 1
@@ -30,143 +31,170 @@ export const rawStyles = {
 export const styles = StyleSheet.create(rawStyles)
 
 export const rowStory = () => {
-  const debug = boolean('DEBUG', false)
-
-  const HEADER = {
-    isEnabled: true,
-    height: 60,
-    shrink: false,
-
-    paddingHorizontal: 14,
-    paddingVertical: 14,
-
-    justifyContent: 'space-between',
-    alignItems: 'center',
-
-    textLeft: 'L',
-    textCenter: 'Header Text',
-    textRight: 'R'
-  }
-
   const BODY = {
     isEnabled: true,
     shrink: false,
     paddingHorizontal: 24,
     paddingVertical: 24,
 
-    justifyContent: 'flex-start',
-    alignItems: 'stretch'
+    justifyContent: COLUMN.justifyContent('Body'),
+    alignItems: COLUMN.alignItems('Body'),
+
+    debug: boolean('Body DEBUG', false)
   }
 
   const ROWS = {
     numberOfRows: Math.max(number('Number of rows', 5), 0),
 
-    height: number('Row Height', 0),
+    height: number('Row Height', undefined),
+    width: number('Row Width', undefined),
     shrink: boolean('Row Shrink', false),
 
     justifyContent: ROW.justifyContent('Row'),
     alignItems: ROW.alignItems('Row'),
 
+    numberOfItems: number('Number of Items', 1),
+
+    debug: boolean('Row DEBUG', false)
+  }
+
+  const ITEMS = {
+    height: number('Item Height', undefined),
+    width: number('Item Width', undefined),
+    shrink: boolean('Item Shrink', false),
+
+    justifyContent: COLUMN.justifyContent('Item'),
+    alignItems: COLUMN.alignItems('Item'),
+
+    numberOfItems: number('Number of Items', 1),
+
+    debug: boolean('Item DEBUG', false)
+  }
+
+  const TEXT = {
     text: 'T',
-    textAlign: 'center',
-    numberOfItems: number('Number of Items', 1)
-  }
 
-  const FOOTER = {
-    isEnabled: true,
-    text: 'This is some footer text',
-    height: 40,
-    shrink: false,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 0,
-    paddingVertical: 0
+    debug: boolean('Text DEBUG', false)
   }
-
-  const tabBar = true
 
   return (
-    <Layout debug={debug}>
+    <Layout>
       <Gradient>
-        {HEADER.isEnabled && (
-          <Header
-            paddingVertical={HEADER.paddingVertical}
-            paddingHorizontal={HEADER.paddingHorizontal}
-            height={HEADER.height}
-            shrink={HEADER.shrink}
-            justifyContent={HEADER.justifyContent}
-            alignItems={HEADER.alignItems}
-            debug={debug}
+        <Body
+          flexDirection={'row'}
+          alignItems={BODY.alignItems}
+          justifyContent={BODY.justifyContent}
+          shrink={BODY.shrink}
+          paddingHorizontal={BODY.paddingHorizontal}
+          paddingVertical={BODY.paddingVertical}
+          debug={BODY.debug}
+        >
+          <Row
+            // flexDirection={'column'}
+            height={ROWS.height}
+            shrink={ROWS.shrink}
+            justifyContent={ROWS.justifyContent}
+            alignItems={ROWS.alignItems}
+            debug={ROWS.debug}
           >
-            <Text H4 debug={debug}>
-              {HEADER.textLeft}
-            </Text>
+            {/* <Item
+              height={ITEMS.height}
+              width={ITEMS.width}
+              shrink={ITEMS.shrink}
+              justifyContent={ITEMS.justifyContent}
+              alignItems={ITEMS.alignItems}
+              debug={ITEMS.debug}
+            > */}
+              <Text
+                P
+                left={TEXT.textAlign === 'left'}
+                right={TEXT.textAlign === 'right'}
+                justify={TEXT.textAlign === 'justify'}
+                auto={TEXT.textAlign === 'auto'}
+                debug={TEXT.debug}
+              >
+                {TEXT.text}
+              </Text>
 
-            <Text H4 debug={debug}>
-              {HEADER.textCenter}
-            </Text>
-
-            <Text H4 debug={debug}>
-              {HEADER.textRight}
-            </Text>
-          </Header>
-        )}
-
-        {BODY.isEnabled && (
-          <Body
-            alignItems={BODY.alignItems}
-            justifyContent={BODY.justifyContent}
-            shrink={BODY.shrink}
-            paddingHorizontal={BODY.paddingHorizontal}
-            paddingVertical={BODY.paddingVertical}
-            debug={debug}
-          >
-            {Array(ROWS.numberOfRows)
-              .fill('')
-              .map((number, index) => (
-                <Row
-                  key={index}
-                  height={ROWS.height}
-                  shrink={ROWS.shrink}
-                  justifyContent={ROWS.justifyContent}
-                  alignItems={ROWS.alignItems}
-                  debug={debug}
-                >
-                  {Array(ROWS.numberOfItems)
-                    .fill('')
-                    .map((number, index) => (
-                      <Text P 
-                        key={index}
-                        left={ROW.textAlign === 'left'}
-                        right={ROW.textAlign === 'right'}
-                        justify={ROW.textAlign === 'justify'}
-                        auto={ROW.textAlign === 'auto'}
-                        debug={debug}>
-                        {ROWS.text}
-                      </Text>
-                    ))
-                  }
-                </Row>
-              ))}
-          </Body>
-        )}
-
-        {FOOTER.isEnabled && (
-          <Footer
-            shrink={FOOTER.shrink}
-            justifyContent={FOOTER.justifyContent}
-            alignItems={FOOTER.alignItems}
-            height={FOOTER.height}
-            paddingHorizontal={FOOTER.paddingHorizontal}
-            paddingVertical={FOOTER.paddingVertical}
-            debug={debug}
-          >
-            <Text debug={debug}>{FOOTER.text}</Text>
-          </Footer>
-        )}
-
-        {tabBar && <TabBar debug={debug} />}
+              <Text
+                P
+                left={TEXT.textAlign === 'left'}
+                right={TEXT.textAlign === 'right'}
+                justify={TEXT.textAlign === 'justify'}
+                auto={TEXT.textAlign === 'auto'}
+                debug={TEXT.debug}
+              >
+                {TEXT.text}
+              </Text>
+            {/* </Item> */}
+          </Row>
+        </Body>
       </Gradient>
     </Layout>
   )
 }
+//   return (
+//     <Layout>
+//       <Gradient>
+//         <Body
+//           alignItems={BODY.alignItems}
+//           justifyContent={BODY.justifyContent}
+//           shrink={BODY.shrink}
+//           paddingHorizontal={BODY.paddingHorizontal}
+//           paddingVertical={BODY.paddingVertical}
+//           debug={BODY.debug}
+//         >
+//           {Array(ROWS.numberOfRows)
+//             .fill('')
+//             .map((number, index) => (
+//               <Row
+//                 key={index}
+//                 height={ROWS.height}
+//                 shrink={ROWS.shrink}
+//                 justifyContent={ROWS.justifyContent}
+//                 alignItems={ROWS.alignItems}
+//                 debug={ROWS.debug}
+//               >
+//                 {Array(ITEMS.numberOfItems)
+//                   .fill('')
+//                   .map((number, index) => (
+//                     <Item
+//                       key={index}
+//                       height={ITEMS.height}
+//                       width={ITEMS.width}
+//                       shrink={ITEMS.shrink}
+//                       justifyContent={ITEMS.justifyContent}
+//                       alignItems={ITEMS.alignItems}
+//                       debug={ITEMS.debug}>
+//                       <Text
+//                         P
+//                         key={index}
+//                         left={TEXT.textAlign === 'left'}
+//                         right={TEXT.textAlign === 'right'}
+//                         justify={TEXT.textAlign === 'justify'}
+//                         auto={TEXT.textAlign === 'auto'}
+//                         debug={TEXT.debug}
+//                       >
+//                         {TEXT.text}
+//                       </Text>
+
+//                       <Text
+//                         P
+//                         key={index}
+//                         left={TEXT.textAlign === 'left'}
+//                         right={TEXT.textAlign === 'right'}
+//                         justify={TEXT.textAlign === 'justify'}
+//                         auto={TEXT.textAlign === 'auto'}
+//                         debug={TEXT.debug}
+//                       >
+//                         {TEXT.text}
+//                       </Text>
+//                     </Item>
+//                   ))}
+//               </Row>
+//             ))}
+//         </Body>
+//       </Gradient>
+//     </Layout>
+//   )
+// }

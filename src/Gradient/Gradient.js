@@ -16,8 +16,9 @@ const UPPER_RIGHT = { x: 1, y: 0 }
 
 const rawStyles = {
   gradient: {
-    height: '100%',
-    width: '100%'
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 }
 const styles = StyleSheet.create(rawStyles)
@@ -40,7 +41,7 @@ export class Gradient extends Component<Props> {
         style={[styles.gradient, style]}
         start={start || UPPER_LEFT}
         end={end || UPPER_RIGHT}
-        colors={colors || reverse ? REVERSE_COLORS : COLORS}
+        colors={colors || (reverse ? REVERSE_COLORS : COLORS)}
       >
         {children}
       </LinearGradient>
