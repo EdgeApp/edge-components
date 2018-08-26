@@ -10,15 +10,29 @@ import Text from './Text/Text.js'
 export class DeleteMe extends React.Component {
   render () {
     return (
-      <Layout backgroundColor={'grey'} debug>
-        <Row backgroundColor={'yellow'} debug>
-          <Text>Hello, World!</Text>
-          <Text>Hello, World!</Text>
+      <Layout top backgroundColor={'grey'} debug>
+        <Row backgroundColor={'aquamarine'} debug>
+          <Item backgroundColor={'yellow'} debug>
+            <Text debug color={'black'}>ETH: $386.42</Text>
+          </Item>
         </Row>
         
-        <Row backgroundColor={'purple'} debug>
-          <Text>Hello, World!</Text>
-          <Text>Hello, World!</Text>
+        <Row debug backgroundColor={'aquamarine'}>
+          <Item backgroundColor={'yellow'} debug>
+            <Text debug color={'black'}>ETH: $386.42</Text>
+          </Item>
+        </Row>
+        
+        <Row debug backgroundColor={'aquamarine'}>
+          <Item backgroundColor={'yellow'} debug>
+            <Text debug color={'black'}>ETH: $386.42</Text>
+          </Item>
+        </Row>
+        
+        <Row debug backgroundColor={'aquamarine'}>
+          <Item backgroundColor={'yellow'} debug>
+            <Text debug color={'black'}>ETH: $386.42</Text>
+          </Item>
         </Row>
       </Layout>
     )

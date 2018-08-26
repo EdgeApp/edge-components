@@ -18,9 +18,9 @@ export const debug = {
 export const rawStyles = {
   layout: {
     ...debug,
-    height: '100%',
-    width: '100%',
     alignItems: 'center',
+    alignSelf: 'stretch',
+    flex: 1,
     justifyContent: 'center',
     overflow: 'hidden'
   }
@@ -52,7 +52,6 @@ export class Layout extends Component<Props> {
       shrink,
       spaceAround,
       spaceBetween,
-      stretch,
       style,
       top,
       width,
@@ -68,13 +67,11 @@ export class Layout extends Component<Props> {
     let alignItems = null
     if (left) alignItems = { alignItems: 'flex-start' }
     if (right) alignItems = { alignItems: 'flex-end' }
-    if (stretch) alignItems = { alignItems: 'stretch' }
     if (baseline) alignItems = { alignItems: 'baseline' }
 
     let flexStyle = null
     if (height || width) flexStyle = { flex: 0 }
     if (shrink) flexStyle = { flex: -1 }
-    if (stretch) flexStyle = { flex: 1 }
 
     const debugStyle = debug ? { borderColor: 'red', borderWidth: 1 } : {}
 

@@ -17,6 +17,7 @@ export const rawStyles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    alignSelf: 'stretch',
     overflow: 'hidden'
   }
 }
@@ -38,6 +39,8 @@ export class Row extends Component<RowProps> {
       left,
       right,
       shrink,
+      shrinkVertical,
+      shrinkHorizontal,
       spaceAround,
       spaceBetween,
       stretch,
@@ -59,10 +62,15 @@ export class Row extends Component<RowProps> {
     if (bottom) alignItems = { alignItems: 'flex-end' }
     if (stretch) alignItems = { alignItems: 'stretch' }
     if (baseline) alignItems = { alignItems: 'baseline' }
-
+    
     let flexStyle = null
-    if (height || width) flexStyle = { flex: 0 }
-    if (shrink) flexStyle = { flex: -1 }
+    if (height) flexStyle = { flex: 0 }
+    if (shrink) flexStyle = { flex: -1, alignSelf: 'auto' }
+
+    if (shrinkVertical) flexStyle = { flex: -1 }
+    let alignSelfStyle = null
+    if (shrinkHorizontal) alignSelfStyle = { alignSelf: 'auto' }
+    if (width) alignSelfStyle = { alignSelf: 'auto' }
 
     let wrapStyle = null
     if (wrap) wrapStyle = { flexWrap: 'wrap' }
@@ -72,7 +80,7 @@ export class Row extends Component<RowProps> {
     const debugStyle = debug ? { borderColor: 'red', borderWidth: 1 } : {}
 
     return (
-      <View style={[styles.row, style, alignItems, justifyContent, flexStyle, wrapStyle, sizeStyle, debugStyle]} {...props}>
+      <View style={[styles.row, style, alignItems, justifyContent, flexStyle, wrapStyle, sizeStyle, alignSelfStyle, debugStyle]} {...props}>
         {children}
       </View>
     )
