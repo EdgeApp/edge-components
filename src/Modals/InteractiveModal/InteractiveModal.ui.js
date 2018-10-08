@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import type { Node } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { PrimaryButton, SecondaryButton } from '../../Buttons'
 import { default as Modal } from 'react-native-modal'
 
 import { styles } from './styles.js'
@@ -215,4 +216,52 @@ export class InteractiveModal extends Component<Props> {
       </View>
     )
   }
+}
+
+export type InteractiveModalOpts = {
+  title?: string,
+  message?: string,
+  icon: Component,
+  errorMessage?: string,
+  onPositive: Function,
+  positiveButtonText: string,
+  onNegative: Function,
+  negativeButtonText: string
+}
+
+export const showInteractiveModal = (opts: InteractiveModalOpts) => (props: { onDone: Function }) => {
+  return (
+    <InteractiveModal>
+      <InteractiveModal.Icon>{opts.icon}</InteractiveModal.Icon>
+
+      <InteractiveModal.Title>
+        <Text style={{ textAlign: 'center' }}>{opts.title || ''}</Text>
+      </InteractiveModal.Title>
+      <InteractiveModal.Body>
+        <InteractiveModal.Description style={{ textAlign: 'center' }}>
+          {opts.message || ''}
+        </InteractiveModal.Description>
+      </InteractiveModal.Body>
+      <InteractiveModal.Footer>
+        <InteractiveModal.Row>
+          <InteractiveModal.Item>
+            <PrimaryButton
+              onPress={() => {
+                props.onDone(true)
+              }}
+            >
+              <PrimaryButton.Text>{opts.positiveButtonText}</PrimaryButton.Text>
+            </PrimaryButton>
+          </InteractiveModal.Item>
+        </InteractiveModal.Row>
+        <InteractiveModal.Row>
+          <InteractiveModal.Item>
+            <SecondaryButton onPress={() => props.onDone(false)}>
+              <SecondaryButton.Text>{opts.negativeButtonText}</SecondaryButton.Text>
+            </SecondaryButton>
+          </InteractiveModal.Item>
+        </InteractiveModal.Row>
+      </InteractiveModal.Footer>
+    </InteractiveModal>
+  )
 }
