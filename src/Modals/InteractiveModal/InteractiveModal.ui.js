@@ -221,15 +221,12 @@ export class InteractiveModal extends Component<Props> {
 export type InteractiveModalOpts = {
   title?: string,
   message?: string,
-  icon: Component,
-  errorMessage?: string,
-  onPositive: Function,
+  icon: Node,
   positiveButtonText: string,
-  onNegative: Function,
   negativeButtonText: string
 }
 
-export const showInteractiveModal = (opts: InteractiveModalOpts) => (props: { onDone: Function }) => {
+export const showInteractiveModal = (opts: InteractiveModalOpts) => (props: { +onDone: Function }) => {
   return (
     <InteractiveModal>
       <InteractiveModal.Icon>{opts.icon}</InteractiveModal.Icon>
