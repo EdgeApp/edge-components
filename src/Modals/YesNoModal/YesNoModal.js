@@ -177,7 +177,7 @@ type Props = {
   children: Node,
   style?: StyleSheet.Styles
 }
-export class InteractiveModal extends Component<Props> {
+export class YesNoModal extends Component<Props> {
   static Icon = Icon
   static Title = Title
   static Description = Description
@@ -189,10 +189,10 @@ export class InteractiveModal extends Component<Props> {
   render () {
     const { isActive, style, ...props } = this.props
     const children = React.Children.toArray(this.props.children)
-    const icon = children.find(child => child.type === InteractiveModal.Icon)
-    const title = children.find(child => child.type === InteractiveModal.Title)
-    const body = children.find(child => child.type === InteractiveModal.Body)
-    const footer = children.find(child => child.type === InteractiveModal.Footer)
+    const icon = children.find(child => child.type === YesNoModal.Icon)
+    const title = children.find(child => child.type === YesNoModal.Title)
+    const body = children.find(child => child.type === YesNoModal.Body)
+    const footer = children.find(child => child.type === YesNoModal.Footer)
 
     return this.props.legacy ? (
       <Modal useNativeDriver avoidKeyboard isVisible={isActive} style={[styles.modal, style]} {...props}>
@@ -218,47 +218,45 @@ export class InteractiveModal extends Component<Props> {
   }
 }
 
-export type InteractiveModalOpts = {
+export type YesNoModalOpts = {
   title?: string,
   message?: string,
   icon: Node,
-  positiveButtonText: string,
-  negativeButtonText: string
+  yesButtonText: string,
+  noButtonText: string
 }
 
-export const showInteractiveModal = (opts: InteractiveModalOpts) => (props: { +onDone: Function }) => {
+export const showYesNoModal = (opts: YesNoModalOpts) => (props: { +onDone: Function }) => {
   return (
-    <InteractiveModal>
-      <InteractiveModal.Icon>{opts.icon}</InteractiveModal.Icon>
+    <YesNoModal>
+      <YesNoModal.Icon>{opts.icon}</YesNoModal.Icon>
 
-      <InteractiveModal.Title>
+      <YesNoModal.Title>
         <Text style={{ textAlign: 'center' }}>{opts.title || ''}</Text>
-      </InteractiveModal.Title>
-      <InteractiveModal.Body>
-        <InteractiveModal.Description style={{ textAlign: 'center' }}>
-          {opts.message || ''}
-        </InteractiveModal.Description>
-      </InteractiveModal.Body>
-      <InteractiveModal.Footer>
-        <InteractiveModal.Row>
-          <InteractiveModal.Item>
+      </YesNoModal.Title>
+      <YesNoModal.Body>
+        <YesNoModal.Description style={{ textAlign: 'center' }}>{opts.message || ''}</YesNoModal.Description>
+      </YesNoModal.Body>
+      <YesNoModal.Footer>
+        <YesNoModal.Row>
+          <YesNoModal.Item>
             <PrimaryButton
               onPress={() => {
                 props.onDone(true)
               }}
             >
-              <PrimaryButton.Text>{opts.positiveButtonText}</PrimaryButton.Text>
+              <PrimaryButton.Text>{opts.yesButtonText}</PrimaryButton.Text>
             </PrimaryButton>
-          </InteractiveModal.Item>
-        </InteractiveModal.Row>
-        <InteractiveModal.Row>
-          <InteractiveModal.Item>
+          </YesNoModal.Item>
+        </YesNoModal.Row>
+        <YesNoModal.Row>
+          <YesNoModal.Item>
             <SecondaryButton onPress={() => props.onDone(false)}>
-              <SecondaryButton.Text>{opts.negativeButtonText}</SecondaryButton.Text>
+              <SecondaryButton.Text>{opts.noButtonText}</SecondaryButton.Text>
             </SecondaryButton>
-          </InteractiveModal.Item>
-        </InteractiveModal.Row>
-      </InteractiveModal.Footer>
-    </InteractiveModal>
+          </YesNoModal.Item>
+        </YesNoModal.Row>
+      </YesNoModal.Footer>
+    </YesNoModal>
   )
 }

@@ -1,6 +1,6 @@
 // @flow
 
 import { PasswordInput, TextInput } from './components'
-import { InteractiveModal, showInteractiveModal } from './InteractiveModal/InteractiveModal.ui'
+import { YesNoModal, showYesNoModal } from './YesNoModal/YesNoModal'
 
-export { InteractiveModal, showInteractiveModal, TextInput, PasswordInput }
+export { YesNoModal, showYesNoModal, TextInput, PasswordInput }

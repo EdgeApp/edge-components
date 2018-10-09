@@ -1,11 +1,11 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import { IconButton } from './IconButton.ui'
-import { PrimaryButton } from './PrimaryButton.ui.js'
-import { SecondaryButton } from './SecondaryButton.ui.js'
-import { TertiaryButton } from './TertiaryButton.ui.js'
-import { TextAndIconButton } from './TextAndIconButton.ui'
-import { TextButton } from './TextButton.ui'
+import { IconButton } from './IconButton'
+import { PrimaryButton } from './PrimaryButton.js'
+import { SecondaryButton } from './SecondaryButton.js'
+import { TertiaryButton } from './TertiaryButton.js'
+import { TextAndIconButton } from './TextAndIconButton'
+import { TextButton } from './TextButton'
 
 export { PrimaryButton, SecondaryButton, TertiaryButton, IconButton, TextAndIconButton, TextButton }
 export const Buttons = { PrimaryButton, SecondaryButton, TertiaryButton, IconButton, TextAndIconButton, TextButton }
