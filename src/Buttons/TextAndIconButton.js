@@ -16,12 +16,14 @@ type State = {
   pressed: boolean
 }
 
-class TextAndIconButton extends Component<Props, State> {
-  UNSAFE_componentWillMount () {
-    this.setState({
+export class TextAndIconButton extends Component<Props, State> {
+  constructor (props: Props) {
+    super(props)
+    this.state = {
       pressed: false
-    })
+    }
   }
+
   _onPressButton = () => {
     this.props.onPress()
   }
@@ -80,5 +82,3 @@ class TextAndIconButton extends Component<Props, State> {
     )
   }
 }
-
-export { TextAndIconButton }

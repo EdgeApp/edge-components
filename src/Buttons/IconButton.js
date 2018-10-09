@@ -13,11 +13,13 @@ type State = {
 }
 
 class IconButton extends Component<Props, State> {
-  UNSAFE_componentWillMount () {
-    this.setState({
+  constructor (props: Props) {
+    super(props)
+    this.state = {
       pressed: false
-    })
+    }
   }
+
   _onPressButton = () => {
     this.props.onPress()
   }

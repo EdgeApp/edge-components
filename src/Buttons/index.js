@@ -8,4 +8,3 @@ import { TextAndIconButton } from './TextAndIconButton'
 import { TextButton } from './TextButton'
 
 export { PrimaryButton, SecondaryButton, TertiaryButton, IconButton, TextAndIconButton, TextButton }
-export const Buttons = { PrimaryButton, SecondaryButton, TertiaryButton, IconButton, TextAndIconButton, TextButton }
