@@ -220,13 +220,14 @@ export class YesNoModal extends Component<Props> {
 
 export type YesNoModalOpts = {
   title?: string,
-  message?: string,
+  message?: string | Node,
   icon: Node,
   yesButtonText: string,
-  noButtonText: string
+  noButtonText: string,
+  textInput?: any
 }
 
-export const showYesNoModal = (opts: YesNoModalOpts) => (props: { +onDone: Function }) => {
+export const createYesNoModal = (opts: YesNoModalOpts) => (props: { +onDone: Function }) => {
   return (
     <YesNoModal>
       <YesNoModal.Icon>{opts.icon}</YesNoModal.Icon>
@@ -235,7 +236,12 @@ export const showYesNoModal = (opts: YesNoModalOpts) => (props: { +onDone: Funct
         <Text style={{ textAlign: 'center' }}>{opts.title || ''}</Text>
       </YesNoModal.Title>
       <YesNoModal.Body>
-        <YesNoModal.Description style={{ textAlign: 'center' }}>{opts.message || ''}</YesNoModal.Description>
+        {opts.message && (
+          <YesNoModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
+            <YesNoModal.Description style={{ textAlign: 'center' }}>{opts.message || ''}</YesNoModal.Description>
+          </YesNoModal.Row>
+        )}
+        {opts.textInput && <YesNoModal.Row>{opts.textInput}</YesNoModal.Row>}
       </YesNoModal.Body>
       <YesNoModal.Footer>
         <YesNoModal.Row>
