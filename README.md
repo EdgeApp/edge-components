@@ -34,7 +34,7 @@ react-native run-android
 * Setup new story
   * Add new story to `storybook/`
   * Add a `<Scene>`
-  * Add `<Header>`, `<Body>`, `<Footer>` (optional)
+  * Add `<Header>`, `<Body>`, `<Footer>` `<YesNoModal>` `<PrimaryButton>` (optional)
   * Add new component
 * Tweak new component
 
