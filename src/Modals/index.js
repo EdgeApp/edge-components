@@ -1,6 +1,6 @@
 // @flow
 
-import { PasswordInput, TextInput } from './components'
-import { YesNoModal, showYesNoModal } from './YesNoModal/YesNoModal'
+import { PasswordInput } from './components'
+import { YesNoModal, createYesNoModal } from './YesNoModal/YesNoModal'
 
-export { YesNoModal, showYesNoModal, TextInput, PasswordInput }
+export { YesNoModal, createYesNoModal, PasswordInput }

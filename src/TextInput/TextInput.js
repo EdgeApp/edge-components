@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
 import { TextField } from 'react-native-material-textfield'
 
-import { THEME } from '../../edge-theme.js'
+import { THEME } from '../edge-theme.js'
 
 const DEFAULTS = {
   tintColor: THEME.COLORS.SECONDARY,
