@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { PrimaryButton, SecondaryButton } from '../../Buttons'
 import { default as Modal } from 'react-native-modal'
 
-import { styles } from './styles.js'
+import { styles } from './YesNoModalStyle.js'
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
 export type ContainerProps = {
