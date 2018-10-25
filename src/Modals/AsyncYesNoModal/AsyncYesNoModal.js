@@ -2,11 +2,109 @@
 
 import React, { Component } from 'react'
 import type { Node } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import { PrimaryButton, SecondaryButton } from '../../Buttons'
 import { default as Modal } from 'react-native-modal'
 
 import { styles } from '../ModalStyle.js'
+
+// AsyncYesNoMmodal //
+type Props = {
+  isActive?: boolean,
+  children: Node,
+  style?: StyleSheet.Styles
+}
+export class AsyncYesNoModal extends Component<Props> {
+  static Icon = Icon
+  static Title = Title
+  static Description = Description
+  static Body = Body
+  static Footer = Footer
+  static Item = Item
+  static Row = Row
+
+  render () {
+    const { isActive, style, ...props } = this.props
+    const children = React.Children.toArray(this.props.children)
+    const icon = children.find(child => child.type === YesNoModal.Icon)
+    const title = children.find(child => child.type === YesNoModal.Title)
+    const body = children.find(child => child.type === YesNoModal.Body)
+    const footer = children.find(child => child.type === YesNoModal.Footer)
+
+    return (
+      <View style={styles.modal} {...props}>
+        {icon}
+        <Container style={style}>
+          <Icon.AndroidHackSpacer />
+          <Header style={styles.header}>{title}</Header>
+          {body}
+          {footer}
+        </Container>
+      </View>
+    )
+  }
+}
+
+export type YesNoModalOpts = {
+  title?: string,
+  message?: string | Node,
+  icon: Node,
+  yesButton: {
+    text: string,
+    onPress: Function,
+    isProcessing?: boolean
+  },
+  noButton: {
+    text: string,
+    onPress: Function,
+    isProcessing?: boolean
+  },
+  textInput?: any
+}
+
+export const createYesNoModal = (opts: YesNoModalOpts) => (props: { +onDone: Function }) => {
+  return (
+    <YesNoModal>
+      <YesNoModal.Icon>{opts.icon}</YesNoModal.Icon>
+
+      <YesNoModal.Title>
+        <Text style={{ textAlign: 'center' }}>{opts.title || ''}</Text>
+      </YesNoModal.Title>
+      <YesNoModal.Body>
+        {opts.message && (
+          <YesNoModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
+            <YesNoModal.Description style={{ textAlign: 'center' }}>{opts.message || ''}</YesNoModal.Description>
+          </YesNoModal.Row>
+        )}
+        {opts.textInput && <YesNoModal.Row>{opts.textInput}</YesNoModal.Row>}
+      </YesNoModal.Body>
+      <YesNoModal.Footer>
+        <YesNoModal.Row>
+          <YesNoModal.Item>
+            <PrimaryButton
+              onPress={() => {
+                opts.yesButton.onPress(props.onDone(true))
+              }}
+            >
+              <PrimaryButton.Text>
+                {opts.yesButton.isProcessing ? <ActivityIndicator /> : opts.yesButton.text}
+              </PrimaryButton.Text>
+            </PrimaryButton>
+          </YesNoModal.Item>
+        </YesNoModal.Row>
+        <YesNoModal.Row>
+          <YesNoModal.Item>
+            <SecondaryButton onPress={() => opts.noButton.onPress(props.onDone(false))}>
+              <SecondaryButton.Text>
+                {opts.notButton.isProcessing ? <ActivityIndicator /> : opts.noButton.text}
+              </SecondaryButton.Text>
+            </SecondaryButton>
+          </YesNoModal.Item>
+        </YesNoModal.Row>
+      </YesNoModal.Footer>
+    </YesNoModal>
+  )
+}
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
 export type ContainerProps = {
@@ -169,100 +267,4 @@ export class Row extends Component<RowProps> {
       </View>
     )
   }
-}
-
-// INTERACTIVE_MODAL /////////////////////////////////////////////////////////////////////////////
-type Props = {
-  isActive?: boolean,
-  children: Node,
-  style?: StyleSheet.Styles
-}
-export class YesNoModal extends Component<Props> {
-  static Icon = Icon
-  static Title = Title
-  static Description = Description
-  static Body = Body
-  static Footer = Footer
-  static Item = Item
-  static Row = Row
-
-  render () {
-    const { isActive, style, ...props } = this.props
-    const children = React.Children.toArray(this.props.children)
-    const icon = children.find(child => child.type === YesNoModal.Icon)
-    const title = children.find(child => child.type === YesNoModal.Title)
-    const body = children.find(child => child.type === YesNoModal.Body)
-    const footer = children.find(child => child.type === YesNoModal.Footer)
-
-    return this.props.legacy ? (
-      <Modal useNativeDriver avoidKeyboard isVisible={isActive} style={[styles.modal, style]} {...props}>
-        {icon}
-        <Container style={style}>
-          <Icon.AndroidHackSpacer />
-          <Header style={styles.header}>{title}</Header>
-          {body}
-          {footer}
-        </Container>
-      </Modal>
-    ) : (
-      <View style={styles.modal} {...props}>
-        {icon}
-        <Container style={style}>
-          <Icon.AndroidHackSpacer />
-          <Header style={styles.header}>{title}</Header>
-          {body}
-          {footer}
-        </Container>
-      </View>
-    )
-  }
-}
-
-export type YesNoModalOpts = {
-  title?: string,
-  message?: string | Node,
-  icon: Node,
-  yesButtonText: string,
-  noButtonText: string,
-  textInput?: any
-}
-
-export const createYesNoModal = (opts: YesNoModalOpts) => (props: { +onDone: Function }) => {
-  return (
-    <YesNoModal>
-      <YesNoModal.Icon>{opts.icon}</YesNoModal.Icon>
-
-      <YesNoModal.Title>
-        <Text style={{ textAlign: 'center' }}>{opts.title || ''}</Text>
-      </YesNoModal.Title>
-      <YesNoModal.Body>
-        {opts.message && (
-          <YesNoModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <YesNoModal.Description style={{ textAlign: 'center' }}>{opts.message || ''}</YesNoModal.Description>
-          </YesNoModal.Row>
-        )}
-        {opts.textInput && <YesNoModal.Row>{opts.textInput}</YesNoModal.Row>}
-      </YesNoModal.Body>
-      <YesNoModal.Footer>
-        <YesNoModal.Row>
-          <YesNoModal.Item>
-            <PrimaryButton
-              onPress={() => {
-                props.onDone(true)
-              }}
-            >
-              <PrimaryButton.Text>{opts.yesButtonText}</PrimaryButton.Text>
-            </PrimaryButton>
-          </YesNoModal.Item>
-        </YesNoModal.Row>
-        <YesNoModal.Row>
-          <YesNoModal.Item>
-            <SecondaryButton onPress={() => props.onDone(false)}>
-              <SecondaryButton.Text>{opts.noButtonText}</SecondaryButton.Text>
-            </SecondaryButton>
-          </YesNoModal.Item>
-        </YesNoModal.Row>
-      </YesNoModal.Footer>
-    </YesNoModal>
-  )
 }
