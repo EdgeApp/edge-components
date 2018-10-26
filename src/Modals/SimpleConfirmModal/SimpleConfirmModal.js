@@ -177,7 +177,7 @@ type Props = {
   children: Node,
   style?: StyleSheet.Styles
 }
-export class YesNoModal extends Component<Props> {
+export class SimpleConfirmModal extends Component<Props> {
   static Icon = Icon
   static Title = Title
   static Description = Description
@@ -189,10 +189,10 @@ export class YesNoModal extends Component<Props> {
   render () {
     const { isActive, style, ...props } = this.props
     const children = React.Children.toArray(this.props.children)
-    const icon = children.find(child => child.type === YesNoModal.Icon)
-    const title = children.find(child => child.type === YesNoModal.Title)
-    const body = children.find(child => child.type === YesNoModal.Body)
-    const footer = children.find(child => child.type === YesNoModal.Footer)
+    const icon = children.find(child => child.type === SimpleConfirmModal.Icon)
+    const title = children.find(child => child.type === SimpleConfirmModal.Title)
+    const body = children.find(child => child.type === SimpleConfirmModal.Body)
+    const footer = children.find(child => child.type === SimpleConfirmModal.Footer)
 
     return this.props.legacy ? (
       <Modal useNativeDriver avoidKeyboard isVisible={isActive} style={[styles.modal, style]} {...props}>
@@ -218,51 +218,45 @@ export class YesNoModal extends Component<Props> {
   }
 }
 
-export type YesNoModalOpts = {
+export type SimpleConfirmModalOpts = {
   title?: string,
   message?: string | Node,
   icon: Node,
-  yesButtonText: string,
-  noButtonText: string,
+  buttonText: string,
   textInput?: any
 }
 
-export const createYesNoModal = (opts: YesNoModalOpts) => (props: { +onDone: Function }) => {
+export const createSimpleConfirmModal = (opts: SimpleConfirmModalOpts) => (props: { +onDone: Function }) => {
   return (
-    <YesNoModal>
-      <YesNoModal.Icon>{opts.icon}</YesNoModal.Icon>
+    <SimpleConfirmModal>
+      <SimpleConfirmModal.Icon>{opts.icon}</SimpleConfirmModal.Icon>
 
-      <YesNoModal.Title>
+      <SimpleConfirmModal.Title>
         <Text style={{ textAlign: 'center' }}>{opts.title || ''}</Text>
-      </YesNoModal.Title>
-      <YesNoModal.Body>
+      </SimpleConfirmModal.Title>
+      <SimpleConfirmModal.Body>
         {opts.message && (
-          <YesNoModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <YesNoModal.Description style={{ textAlign: 'center' }}>{opts.message || ''}</YesNoModal.Description>
-          </YesNoModal.Row>
+          <SimpleConfirmModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
+            <SimpleConfirmModal.Description style={{ textAlign: 'center' }}>
+              {opts.message || ''}
+            </SimpleConfirmModal.Description>
+          </SimpleConfirmModal.Row>
         )}
-        {opts.textInput && <YesNoModal.Row>{opts.textInput}</YesNoModal.Row>}
-      </YesNoModal.Body>
-      <YesNoModal.Footer>
-        <YesNoModal.Row>
-          <YesNoModal.Item>
+        {opts.textInput && <SimpleConfirmModal.Row>{opts.textInput}</SimpleConfirmModal.Row>}
+      </SimpleConfirmModal.Body>
+      <SimpleConfirmModal.Footer>
+        <SimpleConfirmModal.Row>
+          <SimpleConfirmModal.Item>
             <PrimaryButton
               onPress={() => {
                 props.onDone(true)
               }}
             >
-              <PrimaryButton.Text>{opts.yesButtonText}</PrimaryButton.Text>
+              <PrimaryButton.Text>{opts.buttonText}</PrimaryButton.Text>
             </PrimaryButton>
-          </YesNoModal.Item>
-        </YesNoModal.Row>
-        <YesNoModal.Row>
-          <YesNoModal.Item>
-            <SecondaryButton onPress={() => props.onDone(false)}>
-              <SecondaryButton.Text>{opts.noButtonText}</SecondaryButton.Text>
-            </SecondaryButton>
-          </YesNoModal.Item>
-        </YesNoModal.Row>
-      </YesNoModal.Footer>
-    </YesNoModal>
+          </SimpleConfirmModal.Item>
+        </SimpleConfirmModal.Row>
+      </SimpleConfirmModal.Footer>
+    </SimpleConfirmModal>
   )
 }
