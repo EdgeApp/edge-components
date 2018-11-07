@@ -130,11 +130,7 @@ type FooterProps = {
 export class Footer extends Component<FooterProps> {
   render () {
     const { children, style, ...props } = this.props
-    return (
-      <View style={[styles.footer, style]} {...props}>
-        {children}
-      </View>
-    )
+    return <View>{children}</View>
   }
 }
 
@@ -221,11 +217,14 @@ export type InputModalOpts = {
   title?: string,
   message?: string | Node,
   icon: Node,
-  buttonText: string,
-  textInput?: any
+  yesButton: object,
+  noButton: object,
+  textInput?: any,
+  footer: Node
 }
 
 export const createInputModal = (opts: InputModalOpts) => (props: { +onDone: Function }) => {
+  console.log('in createInputModal, style is: ', styles)
   return (
     <InputModal>
       <InputModal.Icon>{opts.icon}</InputModal.Icon>
@@ -240,7 +239,7 @@ export const createInputModal = (opts: InputModalOpts) => (props: { +onDone: Fun
           </InputModal.Row>
         )}
       </InputModal.Body>
-      {props.footer}
+      <InputModal.Footer>{opts.footer}</InputModal.Footer>
     </InputModal>
   )
 }

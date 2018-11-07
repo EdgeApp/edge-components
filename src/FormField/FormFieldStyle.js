@@ -13,9 +13,6 @@ const InputStyles = {
   inputStyle: {
     position: 'relative',
     color: '#FFFFFF'
-    // fontSize: 24,
-    // lineHeight: 40,
-    // margin: 20
   },
   fontSize: scale(15),
   titleFontSize: scale(12),

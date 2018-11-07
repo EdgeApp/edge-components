@@ -5,7 +5,6 @@ export * from './Fonts'
 export * from './Theme'
 export * from './IconConstants'
 export * from './OtpConstants'
-export * from './ToLocalizeConstants'
 
 /* export const LEFT_TO_RIGHT = 'leftToRight'
 export const RIGHT_TO_LEFT = 'rightToLeft'
