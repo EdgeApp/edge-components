@@ -42,7 +42,7 @@ class FormField extends Component<Props, State> {
     })
   }
   render () {
-    const { container, baseColor, tintColor, textColor, errorColor, titleTextStyle } = this.props.style
+    const { container, baseColor, inputContainer, tintColor, textColor, errorColor, titleTextStyle } = this.props.style
     return (
       <Input
         label={this.props.label}
@@ -64,6 +64,7 @@ class FormField extends Component<Props, State> {
         autoCapitalize={'none'}
         autoCorrect={this.props.autoCorrect}
         onSubmitEditing={this.onSubmitEditing}
+        inputContainerStyle={inputContainer}
       />
     )
   }

@@ -20,6 +20,7 @@ type Props = {
   autoFocus: boolean,
   forceFocus: boolean,
   returnKeyType: string,
+  inputContainerStyle: Object,
   onFocus(): void,
   onBlur(): void,
   onChangeText(string): void,
@@ -70,7 +71,8 @@ class Input extends Component<Props, State> {
       errorColor,
       titleTextStyle,
       secureTextEntry,
-      returnKeyType
+      returnKeyType,
+      inputContainerStyle
     } = this.props
     const autoCorrectConfigured = typeof this.props.autoCorrect === 'undefined' ? true : this.props.autoCorrect
     return (
@@ -96,6 +98,7 @@ class Input extends Component<Props, State> {
         fontSize={InputStyles.fontSize}
         titleFontSize={InputStyles.titleFontSize}
         labelFontSize={InputStyles.labelFontSize}
+        inputContainerStyle={inputContainerStyle}
       />
     )
   }

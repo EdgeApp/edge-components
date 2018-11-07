@@ -66,6 +66,9 @@ export const MaterialInputStyle = {
   },
   titleTextStyle: {
     color: Constants.WHITE
+  },
+  inputContainer: {
+    paddingTop: 12
   }
 }
 
