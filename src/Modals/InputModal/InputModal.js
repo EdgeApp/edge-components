@@ -4,8 +4,10 @@ import React, { Component } from 'react'
 import type { Node } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { PrimaryButton, SecondaryButton } from '../../Buttons'
+import { FormField } from '../../FormField'
 import { default as Modal } from 'react-native-modal'
 import { styles } from '../ModalStyle.js'
+import { InputAndButtonStyle, MaterialInputStyle } from '../components/styles.js'
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
 export type ContainerProps = {
@@ -181,6 +183,19 @@ export class InputModal extends Component<Props> {
   static Item = Item
   static Row = Row
 
+  constructor (props) {
+    super(props)
+    this.state = {
+      value: this.props.initialValue || ''
+    }
+  }
+
+  updateValue = (value: string) => {
+    this.setState({
+      value
+    })
+  }
+
   render () {
     const { isActive, style, ...props } = this.props
     const children = React.Children.toArray(this.props.children)
@@ -189,24 +204,47 @@ export class InputModal extends Component<Props> {
     const body = children.find(child => child.type === InputModal.Body)
     const footer = children.find(child => child.type === InputModal.Footer)
 
-    return this.props.legacy ? (
-      <Modal useNativeDriver avoidKeyboard isVisible={isActive} style={[styles.modal, style]} {...props}>
-        {icon}
-        <Container style={style}>
-          <Icon.AndroidHackSpacer />
-          <Header style={styles.header}>{title}</Header>
-          {body}
-          {footer}
-        </Container>
-      </Modal>
-    ) : (
+    return (
       <View style={styles.modal} {...props}>
-        {icon}
+        <InputModal.Icon>{this.props.icon}</InputModal.Icon>
         <Container style={style}>
           <Icon.AndroidHackSpacer />
-          <Header style={styles.header}>{title}</Header>
-          {body}
-          {footer}
+          <InputModal.Title>
+            <Text style={{ textAlign: 'center' }}>{this.props.title || ''}</Text>
+          </InputModal.Title>
+          <InputModal.Body>
+            {this.props.message && (
+              <InputModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                <InputModal.Description style={{ textAlign: 'center' }}>
+                  {this.props.message || ''}
+                </InputModal.Description>
+              </InputModal.Row>
+            )}
+            <View>
+              <FormField
+                style={MaterialInputStyle}
+                label={this.props.input.label}
+                autoCorrect={this.props.input.autoCorrect}
+                {...this.props.input}
+                value={this.state.value}
+                onChangeText={this.updateValue}
+              />
+            </View>
+          </InputModal.Body>
+          <InputModal.Footer>
+            <InputModal.Row style={[InputAndButtonStyle.row]}>
+              <SecondaryButton onPress={() => this.props.onDone(true)} style={[InputAndButtonStyle.noButton]}>
+                <SecondaryButton.Text style={[InputAndButtonStyle.buttonText]}>
+                  {this.props.noButton.title}
+                </SecondaryButton.Text>
+              </SecondaryButton>
+              <PrimaryButton onPress={() => this.props.onDone(false)} style={[InputAndButtonStyle.yesButton]}>
+                <PrimaryButton.Text style={[InputAndButtonStyle.buttonText]}>
+                  {this.props.yesButton.title}
+                </PrimaryButton.Text>
+              </PrimaryButton>
+            </InputModal.Row>
+          </InputModal.Footer>
         </Container>
       </View>
     )
@@ -224,22 +262,5 @@ export type InputModalOpts = {
 }
 
 export const createInputModal = (opts: InputModalOpts) => (props: { +onDone: Function }) => {
-  console.log('in createInputModal, style is: ', styles)
-  return (
-    <InputModal>
-      <InputModal.Icon>{opts.icon}</InputModal.Icon>
-
-      <InputModal.Title>
-        <Text style={{ textAlign: 'center' }}>{opts.title || ''}</Text>
-      </InputModal.Title>
-      <InputModal.Body>
-        {opts.message && (
-          <InputModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <InputModal.Description style={{ textAlign: 'center' }}>{opts.message || ''}</InputModal.Description>
-          </InputModal.Row>
-        )}
-      </InputModal.Body>
-      <InputModal.Footer>{opts.footer}</InputModal.Footer>
-    </InputModal>
-  )
+  return <InputModal {...opts} {...props} />
 }

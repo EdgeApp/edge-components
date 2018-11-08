@@ -54,21 +54,15 @@ export const rawStyles = {
 export const MaterialInputStyle = {
   container: {
     position: 'relative',
-    width: Constants.LOGIN_LABEL_WIDTH,
+    width: '100%',
     paddingTop: 12
   },
-  baseColor: Constants.WHITE,
-  tintColor: Constants.ACCENT_MINT,
-  errorColor: Constants.ACCENT_RED,
-  textColor: Constants.WHITE,
+  baseColor: THEME.COLORS.PRIMARY,
+  tintColor: THEME.COLORS.SECONDARY,
+  errorColor: THEME.COLORS.ACCENT_RED,
+  textColor: THEME.COLORS.BLACK,
   affixTextStyle: {
-    color: Constants.WHITE
-  },
-  titleTextStyle: {
-    color: Constants.WHITE
-  },
-  inputContainer: {
-    paddingTop: 12
+    color: THEME.COLORS.ACCENT_RED
   }
 }
 

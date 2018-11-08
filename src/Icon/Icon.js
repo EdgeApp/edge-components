@@ -9,7 +9,7 @@ import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons'
 
-import * as Constants from '../constants.js'
+import * as Constants from '../constants/index.js'
 
 type Props = {
   style?: StyleSheet.Styles,
