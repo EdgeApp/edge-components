@@ -2,109 +2,11 @@
 
 import React, { Component } from 'react'
 import type { Node } from 'react'
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { PrimaryButton, SecondaryButton } from '../../Buttons'
-import { default as Modal } from 'react-native-modal'
-
+import { FormField } from '../../FormField'
 import { styles } from '../ModalStyle.js'
-
-// AsyncYesNoMmodal //
-type Props = {
-  isActive?: boolean,
-  children: Node,
-  style?: StyleSheet.Styles
-}
-export class AsyncYesNoModal extends Component<Props> {
-  static Icon = Icon
-  static Title = Title
-  static Description = Description
-  static Body = Body
-  static Footer = Footer
-  static Item = Item
-  static Row = Row
-
-  render () {
-    const { isActive, style, ...props } = this.props
-    const children = React.Children.toArray(this.props.children)
-    const icon = children.find(child => child.type === YesNoModal.Icon)
-    const title = children.find(child => child.type === YesNoModal.Title)
-    const body = children.find(child => child.type === YesNoModal.Body)
-    const footer = children.find(child => child.type === YesNoModal.Footer)
-
-    return (
-      <View style={styles.modal} {...props}>
-        {icon}
-        <Container style={style}>
-          <Icon.AndroidHackSpacer />
-          <Header style={styles.header}>{title}</Header>
-          {body}
-          {footer}
-        </Container>
-      </View>
-    )
-  }
-}
-
-export type YesNoModalOpts = {
-  title?: string,
-  message?: string | Node,
-  icon: Node,
-  yesButton: {
-    text: string,
-    onPress: Function,
-    isProcessing?: boolean
-  },
-  noButton: {
-    text: string,
-    onPress: Function,
-    isProcessing?: boolean
-  },
-  textInput?: any
-}
-
-export const createYesNoModal = (opts: YesNoModalOpts) => (props: { +onDone: Function }) => {
-  return (
-    <YesNoModal>
-      <YesNoModal.Icon>{opts.icon}</YesNoModal.Icon>
-
-      <YesNoModal.Title>
-        <Text style={{ textAlign: 'center' }}>{opts.title || ''}</Text>
-      </YesNoModal.Title>
-      <YesNoModal.Body>
-        {opts.message && (
-          <YesNoModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <YesNoModal.Description style={{ textAlign: 'center' }}>{opts.message || ''}</YesNoModal.Description>
-          </YesNoModal.Row>
-        )}
-        {opts.textInput && <YesNoModal.Row>{opts.textInput}</YesNoModal.Row>}
-      </YesNoModal.Body>
-      <YesNoModal.Footer>
-        <YesNoModal.Row>
-          <YesNoModal.Item>
-            <PrimaryButton
-              onPress={() => {
-                opts.yesButton.onPress(props.onDone(true))
-              }}
-            >
-              <PrimaryButton.Text>
-                {opts.yesButton.isProcessing ? <ActivityIndicator /> : opts.yesButton.text}
-              </PrimaryButton.Text>
-            </PrimaryButton>
-          </YesNoModal.Item>
-        </YesNoModal.Row>
-        <YesNoModal.Row>
-          <YesNoModal.Item>
-            <SecondaryButton onPress={() => opts.noButton.onPress(props.onDone(false))}>
-              <SecondaryButton.Text>
-                {opts.notButton.isProcessing ? <ActivityIndicator /> : opts.noButton.text}
-              </SecondaryButton.Text>
-            </SecondaryButton>
-          </YesNoModal.Item>
-        </YesNoModal.Row>
-      </YesNoModal.Footer>
-    </YesNoModal>
-  )
-}
+import { InputAndButtonStyle, MaterialInputStyle } from '../components/styles.js'
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
 export type ContainerProps = {
@@ -229,11 +131,7 @@ type FooterProps = {
 export class Footer extends Component<FooterProps> {
   render () {
     const { children, style, ...props } = this.props
-    return (
-      <View style={[styles.footer, style]} {...props}>
-        {children}
-      </View>
-    )
+    return <View>{children}</View>
   }
 }
 
@@ -267,4 +165,115 @@ export class Row extends Component<RowProps> {
       </View>
     )
   }
+}
+
+// INTERACTIVE_MODAL /////////////////////////////////////////////////////////////////////////////
+type InputModalProps = {
+  isActive?: boolean,
+  style?: StyleSheet.Styles,
+  input: {
+    label: string,
+    autoCorrect?: boolean,
+    returnKeyType: string,
+    initialValue?: string,
+    autoFocus?: boolean
+  },
+  yesButton: {
+    title: string
+  },
+  noButton: {
+    title: string
+  },
+  icon: Node,
+  message?: string | Node,
+  onDone: any => void
+}
+
+type InputModalState = {
+  value: string
+}
+export class InputModal extends Component<InputModalProps, InputModalState> {
+  static Icon = Icon
+  static Title = Title
+  static Description = Description
+  static Body = Body
+  static Footer = Footer
+  static Item = Item
+  static Row = Row
+
+  constructor (props: InputModalProps) {
+    super(props)
+    this.state = {
+      value: this.props.input.initialValue || ''
+    }
+  }
+
+  updateValue = (value: string) => {
+    this.setState({
+      value
+    })
+  }
+
+  render () {
+    const { isActive, style, ...props } = this.props
+    return (
+      <View style={styles.modal} {...props}>
+        <InputModal.Icon>{this.props.icon}</InputModal.Icon>
+        <Container style={style}>
+          <Icon.AndroidHackSpacer />
+          <InputModal.Title>
+            <Text style={{ textAlign: 'center' }}>{this.props.title || ''}</Text>
+          </InputModal.Title>
+          <InputModal.Body>
+            {this.props.message && (
+              <InputModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                <InputModal.Description style={{ textAlign: 'center' }}>
+                  {this.props.message || ''}
+                </InputModal.Description>
+              </InputModal.Row>
+            )}
+            <View>
+              <FormField
+                style={MaterialInputStyle}
+                {...this.props.input}
+                value={this.state.value}
+                onChangeText={this.updateValue}
+                error={''}
+              />
+            </View>
+          </InputModal.Body>
+          <InputModal.Footer>
+            <InputModal.Row style={[InputAndButtonStyle.row]}>
+              <SecondaryButton onPress={() => this.props.onDone(null)} style={[InputAndButtonStyle.noButton]}>
+                <SecondaryButton.Text style={[InputAndButtonStyle.buttonText]}>
+                  {this.props.noButton.title}
+                </SecondaryButton.Text>
+              </SecondaryButton>
+              <PrimaryButton
+                onPress={() => this.props.onDone(this.state.value)}
+                style={[InputAndButtonStyle.yesButton]}
+              >
+                <PrimaryButton.Text style={[InputAndButtonStyle.buttonText]}>
+                  {this.props.yesButton.title}
+                </PrimaryButton.Text>
+              </PrimaryButton>
+            </InputModal.Row>
+          </InputModal.Footer>
+        </Container>
+      </View>
+    )
+  }
+}
+
+export type InputModalOpts = {
+  title?: string,
+  message?: string | Node,
+  icon: Node,
+  yesButton: Object,
+  noButton: Object,
+  input?: Object
+}
+
+export const createInputModal = (opts: InputModalOpts) => (props: { +onDone: Function }) => {
+  return <InputModal {...opts} {...props} />
 }
