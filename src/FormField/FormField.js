@@ -7,21 +7,21 @@ import { Input } from './Input.js'
 type Props = {
   style: Object,
   label: string,
-  value: string,
+  value?: string,
   placeholder?: string,
-  autoCorrect: boolean,
-  autoFocus: boolean,
-  forceFocus: boolean,
+  autoCorrect?: boolean,
+  autoFocus?: boolean,
+  forceFocus?: boolean,
   autoCapitalize?: string,
-  secureTextEntry: boolean,
-  showSecureCheckbox: boolean,
+  secureTextEntry?: boolean,
+  showSecureCheckbox?: boolean,
   returnKeyType: string,
   error?: string,
-  onFinish(): void,
-  onFocus(): void,
-  onBlur(): void,
-  onChangeText(): void,
-  onSubmitEditing(): void
+  onFinish?: () => void,
+  onFocus?: () => void,
+  onBlur?: () => void,
+  onChangeText?: string => void,
+  onSubmitEditing?: () => void
 }
 
 type State = {
@@ -34,7 +34,7 @@ class FormField extends Component<Props, State> {
     value: '',
     returnKeyType: 'done'
   }
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     const secure = this.props.secureTextEntry ? this.props.secureTextEntry : false
     this.setState({
       secure: secure,
@@ -45,26 +45,18 @@ class FormField extends Component<Props, State> {
     const { container, baseColor, inputContainer, tintColor, textColor, errorColor, titleTextStyle } = this.props.style
     return (
       <Input
-        label={this.props.label}
-        value={this.props.value}
-        onChangeText={this.props.onChangeText}
-        error={this.props.error}
         containerStyle={container}
         secureTextEntry={this.state.secure}
-        returnKeyType={this.props.returnKeyType}
         baseColor={baseColor}
         tintColor={tintColor}
         textColor={textColor}
         errorColor={errorColor}
         titleTextStyle={titleTextStyle}
         autoFocus={this.state.autoFocus}
-        forceFocus={this.props.forceFocus}
-        onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
         autoCapitalize={'none'}
-        autoCorrect={this.props.autoCorrect}
         onSubmitEditing={this.onSubmitEditing}
         inputContainerStyle={inputContainer}
+        {...this.props}
       />
     )
   }

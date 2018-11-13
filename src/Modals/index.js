@@ -1,6 +1,6 @@
 // @flow
 
-import { PasswordInput, InputAndButtons } from './components'
+import { PasswordInput } from './components'
 import { YesNoModal, createYesNoModal } from './YesNoModal/YesNoModal.js'
 import { InputModal, createInputModal } from './InputModal/InputModal.js'
 import { StaticModal, createStaticModal } from './StaticModal/StaticModal.js'
@@ -18,6 +18,5 @@ export {
   SimpleConfirmModal,
   createSimpleConfirmModal,
   ModalManager,
-  showModal,
-  InputAndButtons
+  showModal
 }

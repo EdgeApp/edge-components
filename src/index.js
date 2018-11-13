@@ -12,8 +12,7 @@ import {
   SimpleConfirmModal,
   createSimpleConfirmModal,
   ModalManager,
-  showModal,
-  InputAndButtons
+  showModal
 } from './Modals'
 import { Icon } from './Icon/Icon.js'
 import Scene from './Scene/Scene.js'
@@ -41,6 +40,5 @@ export {
   IconButton,
   TextAndIconButton,
   TextButton,
-  Icon,
-  InputAndButtons
+  Icon
 }

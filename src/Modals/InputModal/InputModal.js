@@ -5,7 +5,6 @@ import type { Node } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { PrimaryButton, SecondaryButton } from '../../Buttons'
 import { FormField } from '../../FormField'
-import { default as Modal } from 'react-native-modal'
 import { styles } from '../ModalStyle.js'
 import { InputAndButtonStyle, MaterialInputStyle } from '../components/styles.js'
 
@@ -169,12 +168,31 @@ export class Row extends Component<RowProps> {
 }
 
 // INTERACTIVE_MODAL /////////////////////////////////////////////////////////////////////////////
-type Props = {
+type InputModalProps = {
   isActive?: boolean,
-  children: Node,
-  style?: StyleSheet.Styles
+  style?: StyleSheet.Styles,
+  input: {
+    label: string,
+    autoCorrect?: boolean,
+    returnKeyType: string,
+    initialValue?: string,
+    autoFocus?: boolean
+  },
+  yesButton: {
+    title: string
+  },
+  noButton: {
+    title: string
+  },
+  icon: Node,
+  message?: string | Node,
+  onDone: any => void
 }
-export class InputModal extends Component<Props> {
+
+type InputModalState = {
+  value: string
+}
+export class InputModal extends Component<InputModalProps, InputModalState> {
   static Icon = Icon
   static Title = Title
   static Description = Description
@@ -183,10 +201,10 @@ export class InputModal extends Component<Props> {
   static Item = Item
   static Row = Row
 
-  constructor (props) {
+  constructor (props: InputModalProps) {
     super(props)
     this.state = {
-      value: this.props.initialValue || ''
+      value: this.props.input.initialValue || ''
     }
   }
 
@@ -198,12 +216,6 @@ export class InputModal extends Component<Props> {
 
   render () {
     const { isActive, style, ...props } = this.props
-    const children = React.Children.toArray(this.props.children)
-    const icon = children.find(child => child.type === InputModal.Icon)
-    const title = children.find(child => child.type === InputModal.Title)
-    const body = children.find(child => child.type === InputModal.Body)
-    const footer = children.find(child => child.type === InputModal.Footer)
-
     return (
       <View style={styles.modal} {...props}>
         <InputModal.Icon>{this.props.icon}</InputModal.Icon>
@@ -223,22 +235,24 @@ export class InputModal extends Component<Props> {
             <View>
               <FormField
                 style={MaterialInputStyle}
-                label={this.props.input.label}
-                autoCorrect={this.props.input.autoCorrect}
                 {...this.props.input}
                 value={this.state.value}
                 onChangeText={this.updateValue}
+                error={''}
               />
             </View>
           </InputModal.Body>
           <InputModal.Footer>
             <InputModal.Row style={[InputAndButtonStyle.row]}>
-              <SecondaryButton onPress={() => this.props.onDone(true)} style={[InputAndButtonStyle.noButton]}>
+              <SecondaryButton onPress={() => this.props.onDone(null)} style={[InputAndButtonStyle.noButton]}>
                 <SecondaryButton.Text style={[InputAndButtonStyle.buttonText]}>
                   {this.props.noButton.title}
                 </SecondaryButton.Text>
               </SecondaryButton>
-              <PrimaryButton onPress={() => this.props.onDone(false)} style={[InputAndButtonStyle.yesButton]}>
+              <PrimaryButton
+                onPress={() => this.props.onDone(this.state.value)}
+                style={[InputAndButtonStyle.yesButton]}
+              >
                 <PrimaryButton.Text style={[InputAndButtonStyle.buttonText]}>
                   {this.props.yesButton.title}
                 </PrimaryButton.Text>
@@ -255,10 +269,9 @@ export type InputModalOpts = {
   title?: string,
   message?: string | Node,
   icon: Node,
-  yesButton: object,
-  noButton: object,
-  textInput?: any,
-  footer: Node
+  yesButton: Object,
+  noButton: Object,
+  input?: Object
 }
 
 export const createInputModal = (opts: InputModalOpts) => (props: { +onDone: Function }) => {
