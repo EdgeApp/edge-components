@@ -1,6 +1,6 @@
 {
   "name": "edge-components",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "repository": {
     "type": "git",
     "url": "git@github.com:Airbitz/edge-components.git"
@@ -8,7 +8,8 @@
   "license": "MIT",
   "author": "Edge, Inc.",
   "contributors": [
-    "Kevin Sullivan <kevin@edge.app>"
+    "Kevin Sullivan <kevin@edge.app>",
+    "Kylan Hurt <kylan@edge.app>"
   ],
   "main": "src/index.js",
   "scripts": {
