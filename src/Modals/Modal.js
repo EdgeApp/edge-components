@@ -3,10 +3,7 @@
 import React, { Component } from 'react'
 import type { Node } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { PrimaryButton, SecondaryButton } from '../../Buttons'
-import { FormField } from '../../FormField'
-import { styles } from '../ModalStyle.js'
-import { InputAndButtonStyle, MaterialInputStyle } from '../components/styles.js'
+import { styles } from './ModalStyle.js'
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
 export type ContainerProps = {
@@ -168,113 +165,16 @@ export class Row extends Component<RowProps> {
 }
 
 // INTERACTIVE_MODAL /////////////////////////////////////////////////////////////////////////////
-type InputModalProps = {
-  isActive?: boolean,
-  style?: StyleSheet.Styles,
-  input: {
-    label: string,
-    autoCorrect?: boolean,
-    returnKeyType: string,
-    initialValue?: string,
-    autoFocus?: boolean
-  },
-  yesButton: {
-    title: string
-  },
-  noButton: {
-    title: string
-  },
-  icon: Node,
-  message?: string | Node,
-  onDone: any => void
-}
 
-type InputModalState = {
-  value: string
-}
-export class InputModal extends Component<InputModalProps, InputModalState> {
-  static Icon = Icon
-  static Title = Title
-  static Description = Description
-  static Body = Body
-  static Footer = Footer
-  static Item = Item
-  static Row = Row
-
-  constructor (props: InputModalProps) {
-    super(props)
-    this.state = {
-      value: this.props.input.initialValue || ''
-    }
-  }
-
-  updateValue = (value: string) => {
-    this.setState({
-      value
-    })
-  }
-
-  render () {
-    const { isActive, style, ...props } = this.props
-    return (
-      <View style={styles.modal} {...props}>
-        <InputModal.Icon>{this.props.icon}</InputModal.Icon>
-        <Container style={style}>
-          <Icon.AndroidHackSpacer />
-          <InputModal.Title style={{ textAlign: 'center' }}>
-            <Text>{this.props.title || ''}</Text>
-          </InputModal.Title>
-          <InputModal.Body>
-            {this.props.message && (
-              <InputModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                <InputModal.Description style={{ textAlign: 'center' }}>
-                  {this.props.message || ''}
-                </InputModal.Description>
-              </InputModal.Row>
-            )}
-            <View>
-              <FormField
-                style={MaterialInputStyle}
-                value={this.state.value}
-                onChangeText={this.updateValue}
-                error={''}
-                keyboardType={this.props.input.keyboardType}
-                {...this.props.input}
-              />
-            </View>
-          </InputModal.Body>
-          <InputModal.Footer>
-            <InputModal.Row style={[InputAndButtonStyle.row]}>
-              <SecondaryButton onPress={() => this.props.onDone(null)} style={[InputAndButtonStyle.noButton]}>
-                <SecondaryButton.Text style={[InputAndButtonStyle.buttonText]}>
-                  {this.props.noButton.title}
-                </SecondaryButton.Text>
-              </SecondaryButton>
-              <PrimaryButton
-                onPress={() => this.props.onDone(this.state.value)}
-                style={[InputAndButtonStyle.yesButton]}
-              >
-                <PrimaryButton.Text style={[InputAndButtonStyle.buttonText]}>
-                  {this.props.yesButton.title}
-                </PrimaryButton.Text>
-              </PrimaryButton>
-            </InputModal.Row>
-          </InputModal.Footer>
-        </Container>
-      </View>
-    )
-  }
-}
-
-export type InputModalOpts = {
-  title?: string,
-  message?: string | Node,
-  icon: Node,
-  yesButton: Object,
-  noButton: Object,
-  input?: Object
-}
-
-export const createInputModal = (opts: InputModalOpts) => (props: { +onDone: Function }) => {
-  return <InputModal {...opts} {...props} />
+export const Modal = {
+  Row,
+  Item,
+  Container,
+  Header,
+  Icon,
+  Title,
+  Description,
+  Body,
+  Footer,
+  AndroidHackSpacer
 }

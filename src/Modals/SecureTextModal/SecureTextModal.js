@@ -130,7 +130,7 @@ type FooterProps = {
 }
 export class Footer extends Component<FooterProps> {
   render () {
-    const { children, style, ...props } = this.props
+    const { children } = this.props
     return <View>{children}</View>
   }
 }
@@ -168,7 +168,7 @@ export class Row extends Component<RowProps> {
 }
 
 // INTERACTIVE_MODAL /////////////////////////////////////////////////////////////////////////////
-type InputModalProps = {
+type SecureTextModalProps = {
   isActive?: boolean,
   style?: StyleSheet.Styles,
   input: {
@@ -186,13 +186,15 @@ type InputModalProps = {
   },
   icon: Node,
   message?: string | Node,
-  onDone: any => void
+  onDone: any => void,
+  validateInput: string => Promise<{ success: boolean, message: string }>
 }
 
-type InputModalState = {
-  value: string
+type SecureTextModalState = {
+  value: string,
+  error: string
 }
-export class InputModal extends Component<InputModalProps, InputModalState> {
+export class SecureTextModal extends Component<SecureTextModalProps, SecureTextModalState> {
   static Icon = Icon
   static Title = Title
   static Description = Description
@@ -201,10 +203,11 @@ export class InputModal extends Component<InputModalProps, InputModalState> {
   static Item = Item
   static Row = Row
 
-  constructor (props: InputModalProps) {
+  constructor (props: SecureTextModalProps) {
     super(props)
     this.state = {
-      value: this.props.input.initialValue || ''
+      value: this.props.input.initialValue || '',
+      error: ''
     }
   }
 
@@ -214,67 +217,79 @@ export class InputModal extends Component<InputModalProps, InputModalState> {
     })
   }
 
+  validateInput = async () => {
+    const { validateInput, onDone } = this.props
+    const { value } = this.state
+    const result = await validateInput(value)
+    if (result.success) {
+      onDone(true)
+    } else {
+      this.setState({
+        error: result.message
+      })
+    }
+  }
+
   render () {
     const { isActive, style, ...props } = this.props
+    const { error } = this.state
     return (
       <View style={styles.modal} {...props}>
-        <InputModal.Icon>{this.props.icon}</InputModal.Icon>
+        <SecureTextModal.Icon>{this.props.icon}</SecureTextModal.Icon>
         <Container style={style}>
           <Icon.AndroidHackSpacer />
-          <InputModal.Title style={{ textAlign: 'center' }}>
+          <SecureTextModal.Title style={{ textAlign: 'center' }}>
             <Text>{this.props.title || ''}</Text>
-          </InputModal.Title>
-          <InputModal.Body>
+          </SecureTextModal.Title>
+          <SecureTextModal.Body>
             {this.props.message && (
-              <InputModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                <InputModal.Description style={{ textAlign: 'center' }}>
+              <SecureTextModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                <SecureTextModal.Description style={{ textAlign: 'center' }}>
                   {this.props.message || ''}
-                </InputModal.Description>
-              </InputModal.Row>
+                </SecureTextModal.Description>
+              </SecureTextModal.Row>
             )}
             <View>
               <FormField
                 style={MaterialInputStyle}
+                {...this.props.input}
                 value={this.state.value}
                 onChangeText={this.updateValue}
-                error={''}
-                keyboardType={this.props.input.keyboardType}
-                {...this.props.input}
+                error={error}
+                secureTextEntry
               />
             </View>
-          </InputModal.Body>
-          <InputModal.Footer>
-            <InputModal.Row style={[InputAndButtonStyle.row]}>
+          </SecureTextModal.Body>
+          <SecureTextModal.Footer>
+            <SecureTextModal.Row style={[InputAndButtonStyle.row]}>
               <SecondaryButton onPress={() => this.props.onDone(null)} style={[InputAndButtonStyle.noButton]}>
                 <SecondaryButton.Text style={[InputAndButtonStyle.buttonText]}>
                   {this.props.noButton.title}
                 </SecondaryButton.Text>
               </SecondaryButton>
-              <PrimaryButton
-                onPress={() => this.props.onDone(this.state.value)}
-                style={[InputAndButtonStyle.yesButton]}
-              >
+              <PrimaryButton onPress={this.validateInput} style={[InputAndButtonStyle.yesButton]}>
                 <PrimaryButton.Text style={[InputAndButtonStyle.buttonText]}>
                   {this.props.yesButton.title}
                 </PrimaryButton.Text>
               </PrimaryButton>
-            </InputModal.Row>
-          </InputModal.Footer>
+            </SecureTextModal.Row>
+          </SecureTextModal.Footer>
         </Container>
       </View>
     )
   }
 }
 
-export type InputModalOpts = {
+export type SecureTextModalOpts = {
   title?: string,
   message?: string | Node,
   icon: Node,
   yesButton: Object,
   noButton: Object,
-  input?: Object
+  input?: Object,
+  validateInput: string => Promise<{ success: boolean, message: string }>
 }
 
-export const createInputModal = (opts: InputModalOpts) => (props: { +onDone: Function }) => {
-  return <InputModal {...opts} {...props} />
+export const createSecureTextModal = (opts: SecureTextModalOpts) => (props: { +onDone: Function }) => {
+  return <SecureTextModal {...opts} {...props} />
 }
