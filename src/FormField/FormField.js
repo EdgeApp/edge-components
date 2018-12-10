@@ -15,6 +15,7 @@ type Props = {
   autoCapitalize?: string,
   secureTextEntry?: boolean,
   showSecureCheckbox?: boolean,
+  keyboardType?: string,
   returnKeyType: string,
   error?: string,
   onFinish?: () => void,
@@ -47,6 +48,7 @@ class FormField extends Component<Props, State> {
       <Input
         containerStyle={container}
         secureTextEntry={this.state.secure}
+        keyboardType={this.props.keyboardType}
         baseColor={baseColor}
         tintColor={tintColor}
         textColor={textColor}

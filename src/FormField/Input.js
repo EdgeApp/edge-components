@@ -21,6 +21,7 @@ type Props = {
   forceFocus: boolean,
   returnKeyType: string,
   inputContainerStyle: Object,
+  keyboardType?: string,
   onFocus(): void,
   onBlur(): void,
   onChangeText(string): void,

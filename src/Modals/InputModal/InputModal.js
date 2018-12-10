@@ -176,7 +176,8 @@ type InputModalProps = {
     autoCorrect?: boolean,
     returnKeyType: string,
     initialValue?: string,
-    autoFocus?: boolean
+    autoFocus?: boolean,
+    keyboardType?: string
   },
   yesButton: {
     title: string
