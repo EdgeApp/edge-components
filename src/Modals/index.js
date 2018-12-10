@@ -7,6 +7,9 @@ import { SecureTextModal, createSecureTextModal } from './SecureTextModal/Secure
 import { StaticModal, createStaticModal } from './StaticModal/StaticModal.js'
 import { SimpleConfirmModal, createSimpleConfirmModal } from './SimpleConfirmModal/SimpleConfirmModal.js'
 import { ModalManager, showModal } from './ModalManager.js'
+import { styles as ModalStyle } from './ModalStyle.js'
+import { Modal } from './Modal.js'
+import { MaterialInputStyle, InputAndButtonStyle } from './components/styles.js'
 
 export {
   YesNoModal,
@@ -21,5 +24,9 @@ export {
   SimpleConfirmModal,
   createSimpleConfirmModal,
   ModalManager,
-  showModal
+  showModal,
+  ModalStyle,
+  Modal,
+  MaterialInputStyle,
+  InputAndButtonStyle
 }

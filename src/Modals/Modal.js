@@ -3,10 +3,7 @@
 import React, { Component } from 'react'
 import type { Node } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { PrimaryButton, SecondaryButton } from '../../Buttons'
-import { FormField } from '../../FormField'
-import { styles } from '../ModalStyle.js'
-import { InputAndButtonStyle, MaterialInputStyle } from '../components/styles.js'
+import { styles } from './ModalStyle.js'
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
 export type ContainerProps = {
@@ -130,7 +127,7 @@ type FooterProps = {
 }
 export class Footer extends Component<FooterProps> {
   render () {
-    const { children } = this.props
+    const { children, style, ...props } = this.props
     return <View>{children}</View>
   }
 }
@@ -168,128 +165,16 @@ export class Row extends Component<RowProps> {
 }
 
 // INTERACTIVE_MODAL /////////////////////////////////////////////////////////////////////////////
-type SecureTextModalProps = {
-  isActive?: boolean,
-  style?: StyleSheet.Styles,
-  input: {
-    label: string,
-    autoCorrect?: boolean,
-    returnKeyType: string,
-    initialValue?: string,
-    autoFocus?: boolean
-  },
-  yesButton: {
-    title: string
-  },
-  noButton: {
-    title: string
-  },
-  icon: Node,
-  message?: string | Node,
-  onDone: any => void,
-  validateInput: string => Promise<{ success: boolean, message: string }>
-}
 
-type SecureTextModalState = {
-  value: string,
-  error: string
-}
-export class SecureTextModal extends Component<SecureTextModalProps, SecureTextModalState> {
-  static Icon = Icon
-  static Title = Title
-  static Description = Description
-  static Body = Body
-  static Footer = Footer
-  static Item = Item
-  static Row = Row
-
-  constructor (props: SecureTextModalProps) {
-    super(props)
-    this.state = {
-      value: this.props.input.initialValue || '',
-      error: ''
-    }
-  }
-
-  updateValue = (value: string) => {
-    this.setState({
-      value
-    })
-  }
-
-  validateInput = async () => {
-    const { validateInput, onDone } = this.props
-    const { value } = this.state
-    const result = await validateInput(value)
-    if (result.success) {
-      onDone(true)
-    } else {
-      this.setState({
-        error: result.message
-      })
-    }
-  }
-
-  render () {
-    const { isActive, style, ...props } = this.props
-    const { error } = this.state
-    return (
-      <View style={styles.modal} {...props}>
-        <SecureTextModal.Icon>{this.props.icon}</SecureTextModal.Icon>
-        <Container style={style}>
-          <Icon.AndroidHackSpacer />
-          <SecureTextModal.Title style={{ textAlign: 'center' }}>
-            <Text>{this.props.title || ''}</Text>
-          </SecureTextModal.Title>
-          <SecureTextModal.Body>
-            {this.props.message && (
-              <SecureTextModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                <SecureTextModal.Description style={{ textAlign: 'center' }}>
-                  {this.props.message || ''}
-                </SecureTextModal.Description>
-              </SecureTextModal.Row>
-            )}
-            <View>
-              <FormField
-                style={MaterialInputStyle}
-                {...this.props.input}
-                value={this.state.value}
-                onChangeText={this.updateValue}
-                error={error}
-                secureTextEntry
-              />
-            </View>
-          </SecureTextModal.Body>
-          <SecureTextModal.Footer>
-            <SecureTextModal.Row style={[InputAndButtonStyle.row]}>
-              <SecondaryButton onPress={() => this.props.onDone(null)} style={[InputAndButtonStyle.noButton]}>
-                <SecondaryButton.Text style={[InputAndButtonStyle.buttonText]}>
-                  {this.props.noButton.title}
-                </SecondaryButton.Text>
-              </SecondaryButton>
-              <PrimaryButton onPress={this.validateInput} style={[InputAndButtonStyle.yesButton]}>
-                <PrimaryButton.Text style={[InputAndButtonStyle.buttonText]}>
-                  {this.props.yesButton.title}
-                </PrimaryButton.Text>
-              </PrimaryButton>
-            </SecureTextModal.Row>
-          </SecureTextModal.Footer>
-        </Container>
-      </View>
-    )
-  }
-}
-
-export type SecureTextModalOpts = {
-  title?: string,
-  message?: string | Node,
-  icon: Node,
-  yesButton: Object,
-  noButton: Object,
-  input?: Object,
-  validateInput: string => Promise<{ success: boolean, message: string }>
-}
-
-export const createSecureTextModal = (opts: SecureTextModalOpts) => (props: { +onDone: Function }) => {
-  return <SecureTextModal {...opts} {...props} />
+export const Modal = {
+  Row,
+  Item,
+  Container,
+  Header,
+  Icon,
+  Title,
+  Description,
+  Body,
+  Footer,
+  AndroidHackSpacer
 }

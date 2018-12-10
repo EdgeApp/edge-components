@@ -14,7 +14,11 @@ import {
   SimpleConfirmModal,
   createSimpleConfirmModal,
   ModalManager,
-  showModal
+  showModal,
+  ModalStyle,
+  Modal,
+  MaterialInputStyle,
+  InputAndButtonStyle
 } from './Modals'
 import { Icon } from './Icon/Icon.js'
 import Scene from './Scene/Scene.js'
@@ -34,6 +38,10 @@ export {
   SimpleConfirmModal,
   createSimpleConfirmModal,
   ModalManager,
+  ModalStyle,
+  MaterialInputStyle,
+  InputAndButtonStyle,
+  Modal,
   showModal,
   FormField,
   PasswordInput,

@@ -231,8 +231,8 @@ export const createSimpleConfirmModal = (opts: SimpleConfirmModalOpts) => (props
     <SimpleConfirmModal>
       <SimpleConfirmModal.Icon>{opts.icon}</SimpleConfirmModal.Icon>
 
-      <SimpleConfirmModal.Title>
-        <Text style={{ textAlign: 'center' }}>{opts.title || ''}</Text>
+      <SimpleConfirmModal.Title style={{ textAlign: 'center' }}>
+        <Text>{opts.title || ''}</Text>
       </SimpleConfirmModal.Title>
       <SimpleConfirmModal.Body>
         {opts.message && (

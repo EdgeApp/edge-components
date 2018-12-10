@@ -232,8 +232,8 @@ export const createYesNoModal = (opts: YesNoModalOpts) => (props: { +onDone: Fun
     <YesNoModal>
       <YesNoModal.Icon>{opts.icon}</YesNoModal.Icon>
 
-      <YesNoModal.Title>
-        <Text style={{ textAlign: 'center' }}>{opts.title || ''}</Text>
+      <YesNoModal.Title style={{ textAlign: 'center' }}>
+        <Text>{opts.title || ''}</Text>
       </YesNoModal.Title>
       <YesNoModal.Body>
         {opts.message && (
