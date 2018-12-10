@@ -6,13 +6,19 @@ import {
   createYesNoModal,
   InputModal,
   createInputModal,
+  SecureTextModal,
+  createSecureTextModal,
   PasswordInput,
   StaticModal,
   createStaticModal,
   SimpleConfirmModal,
   createSimpleConfirmModal,
   ModalManager,
-  showModal
+  showModal,
+  ModalStyle,
+  Modal,
+  MaterialInputStyle,
+  InputAndButtonStyle
 } from './Modals'
 import { Icon } from './Icon/Icon.js'
 import Scene from './Scene/Scene.js'
@@ -25,11 +31,17 @@ export {
   createYesNoModal,
   InputModal,
   createInputModal,
+  SecureTextModal,
+  createSecureTextModal,
   StaticModal,
   createStaticModal,
   SimpleConfirmModal,
   createSimpleConfirmModal,
   ModalManager,
+  ModalStyle,
+  MaterialInputStyle,
+  InputAndButtonStyle,
+  Modal,
   showModal,
   FormField,
   PasswordInput,

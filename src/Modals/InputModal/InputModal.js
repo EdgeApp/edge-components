@@ -221,8 +221,8 @@ export class InputModal extends Component<InputModalProps, InputModalState> {
         <InputModal.Icon>{this.props.icon}</InputModal.Icon>
         <Container style={style}>
           <Icon.AndroidHackSpacer />
-          <InputModal.Title>
-            <Text style={{ textAlign: 'center' }}>{this.props.title || ''}</Text>
+          <InputModal.Title style={{ textAlign: 'center' }}>
+            <Text>{this.props.title || ''}</Text>
           </InputModal.Title>
           <InputModal.Body>
             {this.props.message && (
@@ -235,10 +235,11 @@ export class InputModal extends Component<InputModalProps, InputModalState> {
             <View>
               <FormField
                 style={MaterialInputStyle}
-                {...this.props.input}
                 value={this.state.value}
                 onChangeText={this.updateValue}
                 error={''}
+                keyboardType={this.props.input.keyboardType}
+                {...this.props.input}
               />
             </View>
           </InputModal.Body>

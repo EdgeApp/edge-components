@@ -90,6 +90,9 @@ export const InputAndButtonStyle = StyleSheet.create({
     marginLeft: scale(2),
     backgroundColor: THEME.COLORS.SECONDARY,
     borderRadius: 3
+  },
+  tertiaryButtonRow: {
+    marginBottom: scale(12)
   }
 })
 

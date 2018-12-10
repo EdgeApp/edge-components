@@ -4,9 +4,9 @@ import React, { Component } from 'react'
 import type { Node } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { PrimaryButton, SecondaryButton } from '../../Buttons'
-import { default as Modal } from 'react-native-modal'
-
+import { FormField } from '../../FormField'
 import { styles } from '../ModalStyle.js'
+import { InputAndButtonStyle, MaterialInputStyle } from '../components/styles.js'
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
 export type ContainerProps = {
@@ -130,12 +130,8 @@ type FooterProps = {
 }
 export class Footer extends Component<FooterProps> {
   render () {
-    const { children, style, ...props } = this.props
-    return (
-      <View style={[styles.footer, style]} {...props}>
-        {children}
-      </View>
-    )
+    const { children } = this.props
+    return <View>{children}</View>
   }
 }
 
@@ -172,12 +168,33 @@ export class Row extends Component<RowProps> {
 }
 
 // INTERACTIVE_MODAL /////////////////////////////////////////////////////////////////////////////
-type Props = {
+type SecureTextModalProps = {
   isActive?: boolean,
-  children: Node,
-  style?: StyleSheet.Styles
+  style?: StyleSheet.Styles,
+  input: {
+    label: string,
+    autoCorrect?: boolean,
+    returnKeyType: string,
+    initialValue?: string,
+    autoFocus?: boolean
+  },
+  yesButton: {
+    title: string
+  },
+  noButton: {
+    title: string
+  },
+  icon: Node,
+  message?: string | Node,
+  onDone: any => void,
+  validateInput: string => Promise<{ success: boolean, message: string }>
 }
-export class SimpleConfirmModal extends Component<Props> {
+
+type SecureTextModalState = {
+  value: string,
+  error: string
+}
+export class SecureTextModal extends Component<SecureTextModalProps, SecureTextModalState> {
   static Icon = Icon
   static Title = Title
   static Description = Description
@@ -186,77 +203,93 @@ export class SimpleConfirmModal extends Component<Props> {
   static Item = Item
   static Row = Row
 
+  constructor (props: SecureTextModalProps) {
+    super(props)
+    this.state = {
+      value: this.props.input.initialValue || '',
+      error: ''
+    }
+  }
+
+  updateValue = (value: string) => {
+    this.setState({
+      value
+    })
+  }
+
+  validateInput = async () => {
+    const { validateInput, onDone } = this.props
+    const { value } = this.state
+    const result = await validateInput(value)
+    if (result.success) {
+      onDone(true)
+    } else {
+      this.setState({
+        error: result.message
+      })
+    }
+  }
+
   render () {
     const { isActive, style, ...props } = this.props
-    const children = React.Children.toArray(this.props.children)
-    const icon = children.find(child => child.type === SimpleConfirmModal.Icon)
-    const title = children.find(child => child.type === SimpleConfirmModal.Title)
-    const body = children.find(child => child.type === SimpleConfirmModal.Body)
-    const footer = children.find(child => child.type === SimpleConfirmModal.Footer)
-
-    return this.props.legacy ? (
-      <Modal useNativeDriver avoidKeyboard isVisible={isActive} style={[styles.modal, style]} {...props}>
-        {icon}
-        <Container style={style}>
-          <Icon.AndroidHackSpacer />
-          <Header style={styles.header}>{title}</Header>
-          {body}
-          {footer}
-        </Container>
-      </Modal>
-    ) : (
+    const { error } = this.state
+    return (
       <View style={styles.modal} {...props}>
-        {icon}
+        <SecureTextModal.Icon>{this.props.icon}</SecureTextModal.Icon>
         <Container style={style}>
           <Icon.AndroidHackSpacer />
-          <Header style={styles.header}>{title}</Header>
-          {body}
-          {footer}
+          <SecureTextModal.Title style={{ textAlign: 'center' }}>
+            <Text>{this.props.title || ''}</Text>
+          </SecureTextModal.Title>
+          <SecureTextModal.Body>
+            {this.props.message && (
+              <SecureTextModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                <SecureTextModal.Description style={{ textAlign: 'center' }}>
+                  {this.props.message || ''}
+                </SecureTextModal.Description>
+              </SecureTextModal.Row>
+            )}
+            <View>
+              <FormField
+                style={MaterialInputStyle}
+                {...this.props.input}
+                value={this.state.value}
+                onChangeText={this.updateValue}
+                error={error}
+                secureTextEntry
+              />
+            </View>
+          </SecureTextModal.Body>
+          <SecureTextModal.Footer>
+            <SecureTextModal.Row style={[InputAndButtonStyle.row]}>
+              <SecondaryButton onPress={() => this.props.onDone(null)} style={[InputAndButtonStyle.noButton]}>
+                <SecondaryButton.Text style={[InputAndButtonStyle.buttonText]}>
+                  {this.props.noButton.title}
+                </SecondaryButton.Text>
+              </SecondaryButton>
+              <PrimaryButton onPress={this.validateInput} style={[InputAndButtonStyle.yesButton]}>
+                <PrimaryButton.Text style={[InputAndButtonStyle.buttonText]}>
+                  {this.props.yesButton.title}
+                </PrimaryButton.Text>
+              </PrimaryButton>
+            </SecureTextModal.Row>
+          </SecureTextModal.Footer>
         </Container>
       </View>
     )
   }
 }
 
-export type SimpleConfirmModalOpts = {
+export type SecureTextModalOpts = {
   title?: string,
   message?: string | Node,
   icon: Node,
-  buttonText: string,
-  textInput?: any
+  yesButton: Object,
+  noButton: Object,
+  input?: Object,
+  validateInput: string => Promise<{ success: boolean, message: string }>
 }
 
-export const createSimpleConfirmModal = (opts: SimpleConfirmModalOpts) => (props: { +onDone: Function }) => {
-  return (
-    <SimpleConfirmModal>
-      <SimpleConfirmModal.Icon>{opts.icon}</SimpleConfirmModal.Icon>
-
-      <SimpleConfirmModal.Title style={{ textAlign: 'center' }}>
-        <Text>{opts.title || ''}</Text>
-      </SimpleConfirmModal.Title>
-      <SimpleConfirmModal.Body>
-        {opts.message && (
-          <SimpleConfirmModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <SimpleConfirmModal.Description style={{ textAlign: 'center' }}>
-              {opts.message || ''}
-            </SimpleConfirmModal.Description>
-          </SimpleConfirmModal.Row>
-        )}
-        {opts.textInput && <SimpleConfirmModal.Row>{opts.textInput}</SimpleConfirmModal.Row>}
-      </SimpleConfirmModal.Body>
-      <SimpleConfirmModal.Footer>
-        <SimpleConfirmModal.Row>
-          <SimpleConfirmModal.Item>
-            <PrimaryButton
-              onPress={() => {
-                props.onDone(true)
-              }}
-            >
-              <PrimaryButton.Text>{opts.buttonText}</PrimaryButton.Text>
-            </PrimaryButton>
-          </SimpleConfirmModal.Item>
-        </SimpleConfirmModal.Row>
-      </SimpleConfirmModal.Footer>
-    </SimpleConfirmModal>
-  )
+export const createSecureTextModal = (opts: SecureTextModalOpts) => (props: { +onDone: Function }) => {
+  return <SecureTextModal {...opts} {...props} />
 }
