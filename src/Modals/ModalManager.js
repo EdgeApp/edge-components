@@ -8,7 +8,8 @@ export type ModalProps<Result> = { onDone(result: Result): mixed }
 type QueueEntry = {
   Component: ComponentType<any>,
   onDone: (result: any) => mixed,
-  modalProps: Object
+  modalProps: Object,
+  componentProps: Object
 }
 
 type State = {
@@ -37,7 +38,7 @@ export class ModalManager extends React.Component<{}, State> {
     // If the queue is empty, render nothing:
     if (this.state.queue.length === 0) return null
 
-    const { Component, onDone, modalProps } = this.state.queue[0]
+    const { Component, onDone, modalProps, componentProps } = this.state.queue[0]
     return (
       <Modal
         avoidKeyboard
@@ -48,7 +49,7 @@ export class ModalManager extends React.Component<{}, State> {
         useNativeDriver
         {...modalProps}
       >
-        <Component onDone={onDone} />
+        <Component onDone={onDone} {...componentProps} />
       </Modal>
     )
   }
@@ -63,7 +64,11 @@ export class ModalManager extends React.Component<{}, State> {
     this.setState({ isHiding: false, queue: this.state.queue.slice(1) })
   }
 
-  showModal<Result> (Component: ComponentType<ModalProps<Result>>, modalProps: Object): Promise<Result> {
+  showModal<Result> (
+    Component: ComponentType<ModalProps<Result>>,
+    modalProps: Object,
+    componentProps: Object
+  ): Promise<Result> {
     return new Promise(resolve =>
       // Push the component onto the end of the queue:
       this.setState({
@@ -75,7 +80,8 @@ export class ModalManager extends React.Component<{}, State> {
               this.setState({ isHiding: true })
               resolve(result)
             },
-            modalProps
+            modalProps,
+            componentProps
           }
         ]
       })
@@ -93,10 +99,11 @@ let globalModalManager: ModalManager | null = null
  */
 export async function showModal<Result> (
   Component: ComponentType<ModalProps<Result>>,
-  modalProps: Object = {}
+  modalProps: Object = {},
+  componentProps: Object = {}
 ): Promise<Result> {
   if (globalModalManager == null) {
     throw new Error('The ModalManager is not mounted')
   }
-  return globalModalManager.showModal(Component, modalProps)
+  return globalModalManager.showModal(Component, modalProps, componentProps)
 }
