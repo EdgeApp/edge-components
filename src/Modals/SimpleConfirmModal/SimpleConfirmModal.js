@@ -221,12 +221,14 @@ export class SimpleConfirmModal extends Component<Props> {
 export type SimpleConfirmModalOpts = {
   title?: string,
   message?: string | Node,
+  textAlign?: string,
   icon: Node,
   buttonText: string,
   textInput?: any
 }
 
 export const createSimpleConfirmModal = (opts: SimpleConfirmModalOpts) => (props: { +onDone: Function }) => {
+  const textAlign = opts.textAlign ? opts.textAlign : 'center'
   return (
     <SimpleConfirmModal>
       <SimpleConfirmModal.Icon>{opts.icon}</SimpleConfirmModal.Icon>
@@ -235,9 +237,7 @@ export const createSimpleConfirmModal = (opts: SimpleConfirmModalOpts) => (props
       <SimpleConfirmModal.Body>
         {opts.message && (
           <SimpleConfirmModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <SimpleConfirmModal.Description style={{ textAlign: 'center' }}>
-              {opts.message || ''}
-            </SimpleConfirmModal.Description>
+            <SimpleConfirmModal.Description style={{ textAlign }}>{opts.message || ''}</SimpleConfirmModal.Description>
           </SimpleConfirmModal.Row>
         )}
         {opts.textInput && <SimpleConfirmModal.Row>{opts.textInput}</SimpleConfirmModal.Row>}
