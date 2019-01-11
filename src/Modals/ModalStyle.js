@@ -45,7 +45,7 @@ export const rawStyles = {
   },
   item: {
     flex: 1,
-    padding: scale(4)
+    paddingVertical: scale(4)
   },
   row: {
     flexDirection: 'row'
@@ -57,7 +57,7 @@ export const rawStyles = {
   },
   description: {
     paddingVertical: scale(6),
-    fontSize: scale(16),
+    fontSize: scale(14),
     color: THEME.COLORS.GRAY_1,
     fontFamily: THEME.FONTS.DEFAULT,
     alignSelf: 'center'
