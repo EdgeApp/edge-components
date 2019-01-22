@@ -291,6 +291,7 @@ export type SecureTextModalOpts = {
   validateInput: string => Promise<{ success: boolean, message: string }>
 }
 
-export const createSecureTextModal = (opts: SecureTextModalOpts) => (props: { +onDone: Function }) => {
-  return <SecureTextModal {...opts} {...props} />
-}
+export const createSecureTextModal = (opts: SecureTextModalOpts) =>
+  function SecureTextModal (props: { +onDone: Function }) {
+    return <SecureTextModal {...opts} {...props} />
+  }

@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
-import FAIcon from 'react-native-vector-icons/MaterialIcons'
 
 import { styles } from './style'
 
@@ -47,9 +46,6 @@ export class TextAndIconButton extends Component<Props, State> {
       iconContainer,
       text,
       textPressed,
-      icon,
-      iconPressed,
-      iconSize,
       underlayColor
     } = this.props.style
     return (

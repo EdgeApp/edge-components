@@ -128,7 +128,7 @@ type FooterProps = {
 }
 export class Footer extends Component<FooterProps> {
   render () {
-    const { children, style, ...props } = this.props
+    const { children } = this.props
     return <View>{children}</View>
   }
 }

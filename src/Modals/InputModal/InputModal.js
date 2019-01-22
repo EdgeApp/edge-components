@@ -131,7 +131,7 @@ type FooterProps = {
 }
 export class Footer extends Component<FooterProps> {
   render () {
-    const { children, style, ...props } = this.props
+    const { children } = this.props
     return <View>{children}</View>
   }
 }
@@ -277,6 +277,7 @@ export type InputModalOpts = {
   input?: Object
 }
 
-export const createInputModal = (opts: InputModalOpts) => (props: { +onDone: Function }) => {
-  return <InputModal {...opts} {...props} />
-}
+export const createInputModal = (opts: InputModalOpts) =>
+  function InputModal (props: { +onDone: Function }) {
+    return <InputModal {...opts} {...props} />
+  }

@@ -34,19 +34,22 @@ type State = {
 class Input extends Component<Props, State> {
   textInput: TextField
 
-  componentWillMount () {
-    this.setState({
+  constructor (props: Props) {
+    super(props)
+    this.state = {
       inputText: '',
       autoFocus: this.props.autoFocus
-    })
+    }
   }
+
   componentDidMount () {
     if (this.props.autoFocus) {
       this.textInput.focus()
     }
   }
 
-  componentWillReceiveProps (nextProps: Props) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps (nextProps: Props) {
     if (nextProps.value !== this.state.inputText) {
       this.setState({
         inputText: nextProps.value,

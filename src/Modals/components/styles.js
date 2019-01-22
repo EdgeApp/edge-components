@@ -2,7 +2,6 @@
 
 import { StyleSheet } from 'react-native'
 
-import * as Constants from '../../constants'
 import THEME from '../../edge-theme.js'
 import { scale } from '../../scaling.js'
 

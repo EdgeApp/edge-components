@@ -35,13 +35,16 @@ class FormField extends Component<Props, State> {
     value: '',
     returnKeyType: 'done'
   }
-  UNSAFE_componentWillMount () {
+
+  constructor (props: Props) {
+    super(props)
     const secure = this.props.secureTextEntry ? this.props.secureTextEntry : false
-    this.setState({
-      secure: secure,
+    this.state = {
+      secure,
       autoFocus: this.props.autoFocus
-    })
+    }
   }
+
   render () {
     const { container, baseColor, inputContainer, tintColor, textColor, errorColor, titleTextStyle } = this.props.style
     return (

@@ -2,9 +2,7 @@
 
 import React, { Component } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
-import Modal from 'react-native-modal'
 
-import THEME from '../../edge-theme.js'
 import { Gradient } from '../../Gradient/Gradient.js'
 import { StaticModalStyle } from '../ModalStyle.js'
 
@@ -57,13 +55,14 @@ export type StaticModalOpts = {
   modalDismissTimerSeconds?: number
 }
 
-export const createStaticModal = (opts: StaticModalOpts) => (props: { +onDone: Function }) => {
-  return (
-    <StaticModal
-      message={opts.message}
-      icon={opts.icon}
-      onDone={props.onDone}
-      modalDismissTimerSeconds={opts.modalDismissTimerSeconds}
-    />
-  )
-}
+export const createStaticModal = (opts: StaticModalOpts) =>
+  function StaticModal (props: { +onDone: Function }) {
+    return (
+      <StaticModal
+        message={opts.message}
+        icon={opts.icon}
+        onDone={props.onDone}
+        modalDismissTimerSeconds={opts.modalDismissTimerSeconds}
+      />
+    )
+  }

@@ -5,7 +5,7 @@ import type { Node } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { default as Modal } from 'react-native-modal'
 
-import { PrimaryButton, SecondaryButton } from '../../Buttons'
+import { PrimaryButton } from '../../Buttons'
 import { styles } from '../ModalStyle.js'
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
@@ -227,34 +227,37 @@ export type SimpleConfirmModalOpts = {
   textInput?: any
 }
 
-export const createSimpleConfirmModal = (opts: SimpleConfirmModalOpts) => (props: { +onDone: Function }) => {
-  const textAlign = opts.textAlign ? opts.textAlign : 'center'
-  return (
-    <SimpleConfirmModal>
-      <SimpleConfirmModal.Icon>{opts.icon}</SimpleConfirmModal.Icon>
+export const createSimpleConfirmModal = (opts: SimpleConfirmModalOpts) =>
+  function SimpleConfirmModal (props: { +onDone: Function }) {
+    const textAlign = opts.textAlign ? opts.textAlign : 'center'
+    return (
+      <SimpleConfirmModal>
+        <SimpleConfirmModal.Icon>{opts.icon}</SimpleConfirmModal.Icon>
 
-      <SimpleConfirmModal.Title style={{ textAlign: 'center' }}>{opts.title || ''}</SimpleConfirmModal.Title>
-      <SimpleConfirmModal.Body>
-        {opts.message && (
-          <SimpleConfirmModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <SimpleConfirmModal.Description style={{ textAlign }}>{opts.message || ''}</SimpleConfirmModal.Description>
+        <SimpleConfirmModal.Title style={{ textAlign: 'center' }}>{opts.title || ''}</SimpleConfirmModal.Title>
+        <SimpleConfirmModal.Body>
+          {opts.message && (
+            <SimpleConfirmModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
+              <SimpleConfirmModal.Description style={{ textAlign }}>
+                {opts.message || ''}
+              </SimpleConfirmModal.Description>
+            </SimpleConfirmModal.Row>
+          )}
+          {opts.textInput && <SimpleConfirmModal.Row>{opts.textInput}</SimpleConfirmModal.Row>}
+        </SimpleConfirmModal.Body>
+        <SimpleConfirmModal.Footer>
+          <SimpleConfirmModal.Row>
+            <SimpleConfirmModal.Item>
+              <PrimaryButton
+                onPress={() => {
+                  props.onDone(true)
+                }}
+              >
+                <PrimaryButton.Text>{opts.buttonText}</PrimaryButton.Text>
+              </PrimaryButton>
+            </SimpleConfirmModal.Item>
           </SimpleConfirmModal.Row>
-        )}
-        {opts.textInput && <SimpleConfirmModal.Row>{opts.textInput}</SimpleConfirmModal.Row>}
-      </SimpleConfirmModal.Body>
-      <SimpleConfirmModal.Footer>
-        <SimpleConfirmModal.Row>
-          <SimpleConfirmModal.Item>
-            <PrimaryButton
-              onPress={() => {
-                props.onDone(true)
-              }}
-            >
-              <PrimaryButton.Text>{opts.buttonText}</PrimaryButton.Text>
-            </PrimaryButton>
-          </SimpleConfirmModal.Item>
-        </SimpleConfirmModal.Row>
-      </SimpleConfirmModal.Footer>
-    </SimpleConfirmModal>
-  )
-}
+        </SimpleConfirmModal.Footer>
+      </SimpleConfirmModal>
+    )
+  }
