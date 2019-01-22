@@ -3,9 +3,9 @@
 import React, { Component } from 'react'
 import type { Node } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { PrimaryButton, SecondaryButton } from '../../Buttons'
 import { default as Modal } from 'react-native-modal'
 
+import { PrimaryButton, SecondaryButton } from '../../Buttons'
 import { styles } from '../ModalStyle.js'
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
@@ -175,7 +175,8 @@ export class Row extends Component<RowProps> {
 type Props = {
   isActive?: boolean,
   children: Node,
-  style?: StyleSheet.Styles
+  style?: StyleSheet.Styles,
+  legacy?: boolean
 }
 export class YesNoModal extends Component<Props> {
   static Icon = Icon
@@ -228,43 +229,44 @@ export type YesNoModalOpts = {
   textInput?: any
 }
 
-export const createYesNoModal = (opts: YesNoModalOpts) => (props: { +onDone: Function }) => {
-  const textAlign = opts.textAlign ? opts.textAlign : 'center'
-  return (
-    <YesNoModal>
-      <YesNoModal.Icon>{opts.icon}</YesNoModal.Icon>
+export const createYesNoModal = (opts: YesNoModalOpts) =>
+  function YesNoModal (props: { +onDone: Function }) {
+    const textAlign = opts.textAlign ? opts.textAlign : 'center'
+    return (
+      <YesNoModal>
+        <YesNoModal.Icon>{opts.icon}</YesNoModal.Icon>
 
-      <YesNoModal.Title style={{ textAlign: 'center' }}>
-        <Text>{opts.title || ''}</Text>
-      </YesNoModal.Title>
-      <YesNoModal.Body>
-        {opts.message && (
-          <YesNoModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <YesNoModal.Description style={{ textAlign }}>{opts.message || ''}</YesNoModal.Description>
+        <YesNoModal.Title style={{ textAlign: 'center' }}>
+          <Text>{opts.title || ''}</Text>
+        </YesNoModal.Title>
+        <YesNoModal.Body>
+          {opts.message && (
+            <YesNoModal.Row style={{ flexDirection: 'row', justifyContent: 'center' }}>
+              <YesNoModal.Description style={{ textAlign }}>{opts.message || ''}</YesNoModal.Description>
+            </YesNoModal.Row>
+          )}
+          {opts.textInput && <YesNoModal.Row>{opts.textInput}</YesNoModal.Row>}
+        </YesNoModal.Body>
+        <YesNoModal.Footer>
+          <YesNoModal.Row>
+            <YesNoModal.Item>
+              <PrimaryButton
+                onPress={() => {
+                  props.onDone(true)
+                }}
+              >
+                <PrimaryButton.Text>{opts.yesButtonText}</PrimaryButton.Text>
+              </PrimaryButton>
+            </YesNoModal.Item>
           </YesNoModal.Row>
-        )}
-        {opts.textInput && <YesNoModal.Row>{opts.textInput}</YesNoModal.Row>}
-      </YesNoModal.Body>
-      <YesNoModal.Footer>
-        <YesNoModal.Row>
-          <YesNoModal.Item>
-            <PrimaryButton
-              onPress={() => {
-                props.onDone(true)
-              }}
-            >
-              <PrimaryButton.Text>{opts.yesButtonText}</PrimaryButton.Text>
-            </PrimaryButton>
-          </YesNoModal.Item>
-        </YesNoModal.Row>
-        <YesNoModal.Row>
-          <YesNoModal.Item>
-            <SecondaryButton onPress={() => props.onDone(false)}>
-              <SecondaryButton.Text>{opts.noButtonText}</SecondaryButton.Text>
-            </SecondaryButton>
-          </YesNoModal.Item>
-        </YesNoModal.Row>
-      </YesNoModal.Footer>
-    </YesNoModal>
-  )
-}
+          <YesNoModal.Row>
+            <YesNoModal.Item>
+              <SecondaryButton onPress={() => props.onDone(false)}>
+                <SecondaryButton.Text>{opts.noButtonText}</SecondaryButton.Text>
+              </SecondaryButton>
+            </YesNoModal.Item>
+          </YesNoModal.Row>
+        </YesNoModal.Footer>
+      </YesNoModal>
+    )
+  }

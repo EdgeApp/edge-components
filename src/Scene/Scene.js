@@ -4,12 +4,12 @@ import React, { Component } from 'react'
 import type { Node } from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { Header } from './Header.js'
 import { Body } from './Body.js'
 import { Footer } from './Footer.js'
-import { Row } from './Row.js'
+import { Header } from './Header.js'
 import { Item } from './Item.js'
 import { Padding } from './Padding.js'
+import { Row } from './Row.js'
 
 export const debug = {
   // borderColor: 'red', borderWidth: 1

@@ -2,13 +2,7 @@
 
 import React, { Component } from 'react'
 import type { Node } from 'react'
-import { StyleSheet, Text as RNText, View } from 'react-native'
-
-import THEME from '../edge-theme.js'
-
-const debug = {
-  // borderColor: 'red', borderWidth: 1
-}
+import { Text as RNText, StyleSheet, View } from 'react-native'
 
 export const rawStyles = {
   footer: {
@@ -24,6 +18,8 @@ export type FooterProps = {
   style?: StyleSheet.Styles
 }
 export class Footer extends Component<FooterProps> {
+  static Text = RNText
+
   render () {
     const { children, style } = this.props
 

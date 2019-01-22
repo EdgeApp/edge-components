@@ -1,29 +1,29 @@
 // @flow
 
-import Gradient from './Gradient/Gradient.js'
-import {
-  YesNoModal,
-  createYesNoModal,
-  InputModal,
-  createInputModal,
-  SecureTextModal,
-  createSecureTextModal,
-  PasswordInput,
-  StaticModal,
-  createStaticModal,
-  SimpleConfirmModal,
-  createSimpleConfirmModal,
-  ModalManager,
-  showModal,
-  ModalStyle,
-  Modal,
-  MaterialInputStyle,
-  InputAndButtonStyle
-} from './Modals'
-import { Icon } from './Icon/Icon.js'
-import Scene from './Scene/Scene.js'
-import { PrimaryButton, SecondaryButton, TertiaryButton, IconButton, TextAndIconButton, TextButton } from './Buttons'
+import { IconButton, PrimaryButton, SecondaryButton, TertiaryButton, TextAndIconButton, TextButton } from './Buttons'
 import { FormField } from './FormField'
+import Gradient from './Gradient/Gradient.js'
+import { Icon } from './Icon/Icon.js'
+import {
+  InputAndButtonStyle,
+  InputModal,
+  MaterialInputStyle,
+  Modal,
+  ModalManager,
+  ModalStyle,
+  PasswordInput,
+  SecureTextModal,
+  SimpleConfirmModal,
+  StaticModal,
+  YesNoModal,
+  createInputModal,
+  createSecureTextModal,
+  createSimpleConfirmModal,
+  createStaticModal,
+  createYesNoModal,
+  showModal
+} from './Modals'
+import Scene from './Scene/Scene.js'
 
 export {
   Gradient,

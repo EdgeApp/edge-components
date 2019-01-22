@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import type { Node } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+
 import { styles } from './ModalStyle.js'
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
@@ -127,7 +128,7 @@ type FooterProps = {
 }
 export class Footer extends Component<FooterProps> {
   render () {
-    const { children, style, ...props } = this.props
+    const { children } = this.props
     return <View>{children}</View>
   }
 }

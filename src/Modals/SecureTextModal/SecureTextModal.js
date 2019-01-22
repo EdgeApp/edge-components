@@ -3,10 +3,11 @@
 import React, { Component } from 'react'
 import type { Node } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+
 import { PrimaryButton, SecondaryButton } from '../../Buttons'
 import { FormField } from '../../FormField'
-import { styles } from '../ModalStyle.js'
 import { InputAndButtonStyle, MaterialInputStyle } from '../components/styles.js'
+import { styles } from '../ModalStyle.js'
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
 export type ContainerProps = {
@@ -186,6 +187,7 @@ type SecureTextModalProps = {
   },
   icon: Node,
   message?: string | Node,
+  title?: string,
   onDone: any => void,
   validateInput: string => Promise<{ success: boolean, message: string }>
 }
@@ -290,6 +292,7 @@ export type SecureTextModalOpts = {
   validateInput: string => Promise<{ success: boolean, message: string }>
 }
 
-export const createSecureTextModal = (opts: SecureTextModalOpts) => (props: { +onDone: Function }) => {
-  return <SecureTextModal {...opts} {...props} />
-}
+export const createSecureTextModal = (opts: SecureTextModalOpts) =>
+  function SecureTextModal (props: { +onDone: Function }) {
+    return <SecureTextModal {...opts} {...props} />
+  }

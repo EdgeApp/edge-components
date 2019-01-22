@@ -35,7 +35,7 @@ class IconButton extends Component<Props, State> {
   }
 
   render () {
-    const { container, icon, iconPressed, iconSize, underlayColor } = this.props.style
+    const { container, underlayColor } = this.props.style
     return (
       <TouchableHighlight
         style={container}

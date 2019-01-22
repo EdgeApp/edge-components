@@ -3,10 +3,11 @@
 import React, { Component } from 'react'
 import type { Node } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+
 import { PrimaryButton, SecondaryButton } from '../../Buttons'
 import { FormField } from '../../FormField'
-import { styles } from '../ModalStyle.js'
 import { InputAndButtonStyle, MaterialInputStyle } from '../components/styles.js'
+import { styles } from '../ModalStyle.js'
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
 export type ContainerProps = {
@@ -130,7 +131,7 @@ type FooterProps = {
 }
 export class Footer extends Component<FooterProps> {
   render () {
-    const { children, style, ...props } = this.props
+    const { children } = this.props
     return <View>{children}</View>
   }
 }
@@ -187,6 +188,7 @@ type InputModalProps = {
   },
   icon: Node,
   message?: string | Node,
+  title?: string,
   onDone: any => void
 }
 
@@ -276,6 +278,7 @@ export type InputModalOpts = {
   input?: Object
 }
 
-export const createInputModal = (opts: InputModalOpts) => (props: { +onDone: Function }) => {
-  return <InputModal {...opts} {...props} />
-}
+export const createInputModal = (opts: InputModalOpts) =>
+  function InputModal (props: { +onDone: Function }) {
+    return <InputModal {...opts} {...props} />
+  }
