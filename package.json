@@ -13,11 +13,11 @@
   ],
   "main": "src/index.js",
   "scripts": {
-    "precommit": "yarn format",
+    "precommit": "lint-staged",
     "flow": "flow",
-    "format": "sort-package-json; import-sort -l --write '*.js' 'storybook/**/*.js'; lint-staged",
+    "format": "sort-package-json; import-sort -l --write '*.js' 'src/**/*.js' 'storybook/**/*.js'; prettier-eslint --write '*.js' 'src/**/*.js' 'storybook/**/*.js'",
     "jest": "jest",
-    "lint": "eslint '*.js' 'src/**/*.js'",
+    "lint": "eslint '*.js' 'src/**/*.js' 'storybook/**/*.js'",
     "start": "storybook start -p 7007",
     "test": "jest"
   },
@@ -75,8 +75,9 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier-eslint --write",
-      "git add"
+      "eslint",
+      "import-sort --list-different",
+      "prettier-eslint --list-different"
     ]
   }
 }

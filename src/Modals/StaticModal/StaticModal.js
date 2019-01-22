@@ -2,11 +2,11 @@
 
 import React, { Component } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
-import { Gradient } from '../../Gradient/Gradient.js'
 import Modal from 'react-native-modal'
 
-import { StaticModalStyle } from '../ModalStyle.js'
 import THEME from '../../edge-theme.js'
+import { Gradient } from '../../Gradient/Gradient.js'
+import { StaticModalStyle } from '../ModalStyle.js'
 
 type StaticModalProps = {
   isActive?: boolean,

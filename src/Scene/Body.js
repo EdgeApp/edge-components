@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import type { Node } from 'react'
-import { StyleSheet, Text as RNText, View } from 'react-native'
+import { Text as RNText, StyleSheet, View } from 'react-native'
 
 import THEME from '../edge-theme.js'
 

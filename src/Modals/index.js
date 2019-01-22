@@ -1,15 +1,15 @@
 // @flow
 
 import { PasswordInput } from './components'
-import { YesNoModal, createYesNoModal } from './YesNoModal/YesNoModal.js'
+import { InputAndButtonStyle, MaterialInputStyle } from './components/styles.js'
 import { InputModal, createInputModal } from './InputModal/InputModal.js'
-import { SecureTextModal, createSecureTextModal } from './SecureTextModal/SecureTextModal.js'
-import { StaticModal, createStaticModal } from './StaticModal/StaticModal.js'
-import { SimpleConfirmModal, createSimpleConfirmModal } from './SimpleConfirmModal/SimpleConfirmModal.js'
+import { Modal } from './Modal.js'
 import { ModalManager, showModal } from './ModalManager.js'
 import { styles as ModalStyle } from './ModalStyle.js'
-import { Modal } from './Modal.js'
-import { MaterialInputStyle, InputAndButtonStyle } from './components/styles.js'
+import { SecureTextModal, createSecureTextModal } from './SecureTextModal/SecureTextModal.js'
+import { SimpleConfirmModal, createSimpleConfirmModal } from './SimpleConfirmModal/SimpleConfirmModal.js'
+import { StaticModal, createStaticModal } from './StaticModal/StaticModal.js'
+import { YesNoModal, createYesNoModal } from './YesNoModal/YesNoModal.js'
 
 export {
   YesNoModal,

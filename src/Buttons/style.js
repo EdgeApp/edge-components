@@ -1,8 +1,9 @@
 // @flow
 
 import { StyleSheet } from 'react-native'
-import { scale } from '../scaling.js'
+
 import THEME from '../edge-theme.js'
+import { scale } from '../scaling.js'
 
 export const rawStyles = {
   button: {

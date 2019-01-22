@@ -3,10 +3,11 @@
 import React, { Component } from 'react'
 import type { Node } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+
 import { PrimaryButton, SecondaryButton } from '../../Buttons'
 import { FormField } from '../../FormField'
-import { styles } from '../ModalStyle.js'
 import { InputAndButtonStyle, MaterialInputStyle } from '../components/styles.js'
+import { styles } from '../ModalStyle.js'
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
 export type ContainerProps = {

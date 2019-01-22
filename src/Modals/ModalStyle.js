@@ -1,8 +1,9 @@
 // @flow
 
-import { StyleSheet, Dimensions } from 'react-native'
-import { scale } from '../scaling.js'
+import { Dimensions, StyleSheet } from 'react-native'
+
 import THEME from '../edge-theme.js'
+import { scale } from '../scaling.js'
 
 export const rawStyles = {
   modal: {},
