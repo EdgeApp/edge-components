@@ -8,6 +8,7 @@ import { InputStyles } from './FormFieldStyle.js'
 type Props = {
   label: string,
   value: string,
+  error?: string,
   containerStyle: Object,
   baseColor: string,
   tintColor: string,

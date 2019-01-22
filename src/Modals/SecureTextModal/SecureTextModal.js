@@ -187,6 +187,7 @@ type SecureTextModalProps = {
   },
   icon: Node,
   message?: string | Node,
+  title?: string,
   onDone: any => void,
   validateInput: string => Promise<{ success: boolean, message: string }>
 }

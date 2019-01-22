@@ -188,6 +188,7 @@ type InputModalProps = {
   },
   icon: Node,
   message?: string | Node,
+  title?: string,
   onDone: any => void
 }
 

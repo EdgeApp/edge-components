@@ -41,7 +41,7 @@ class FormField extends Component<Props, State> {
     const secure = this.props.secureTextEntry ? this.props.secureTextEntry : false
     this.state = {
       secure,
-      autoFocus: this.props.autoFocus
+      autoFocus: this.props.autoFocus || false
     }
   }
 
