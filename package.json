@@ -1,6 +1,6 @@
 {
   "name": "edge-components",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "repository": {
     "type": "git",
     "url": "git@github.com:Airbitz/edge-components.git"
@@ -17,7 +17,6 @@
     "format": "sort-package-json; import-sort -l --write '*.js' 'src/**/*.js' 'storybook/**/*.js'; prettier-eslint --write '*.js' 'src/**/*.js' 'storybook/**/*.js'",
     "jest": "jest",
     "lint": "eslint '*.js' 'src/**/*.js' 'storybook/**/*.js'",
-    "precommit": "lint-staged && flow",
     "start": "storybook start -p 7007",
     "test": "jest"
   },
