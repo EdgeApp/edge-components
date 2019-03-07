@@ -28,7 +28,7 @@ export class ModalManager extends React.Component<{}, State> {
 
     // Register as the global modal manager:
     if (globalModalManager != null) {
-      throw new Error('The ModalManager must only be mounted once')
+      console.warn('The ModalManager must only be mounted once')
     }
     globalModalManager = this
   }
