@@ -3,9 +3,9 @@
 import React, { Component } from 'react'
 import type { Node } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { PrimaryButton, SecondaryButton, TertiaryButton } from '../../Buttons'
 import { default as Modal } from 'react-native-modal'
 
+import { PrimaryButton, SecondaryButton, TertiaryButton } from '../../Buttons'
 import { styles } from '../ModalStyle.js'
 
 // CONTAINER /////////////////////////////////////////////////////////////////////////////
@@ -175,7 +175,8 @@ export class Row extends Component<RowProps> {
 type Props = {
   isActive?: boolean,
   children: Node,
-  style?: StyleSheet.Styles
+  style?: StyleSheet.Styles,
+  legacy?: boolean
 }
 export class ThreeButtonModal extends Component<Props> {
   static Icon = Icon

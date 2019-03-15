@@ -2,8 +2,6 @@
 
 import { PasswordInput } from './components'
 import { InputAndButtonStyle, MaterialInputStyle } from './components/styles.js'
-import { YesNoModal, createYesNoModal } from './YesNoModal/YesNoModal.js'
-import { createThreeButtonModal } from './ThreeButtonModal/ThreeButtonModal.js'
 import { InputModal, createInputModal } from './InputModal/InputModal.js'
 import { Modal } from './Modal.js'
 import { ModalManager, showModal } from './ModalManager.js'
@@ -11,6 +9,7 @@ import { styles as ModalStyle } from './ModalStyle.js'
 import { SecureTextModal, createSecureTextModal } from './SecureTextModal/SecureTextModal.js'
 import { SimpleConfirmModal, createSimpleConfirmModal } from './SimpleConfirmModal/SimpleConfirmModal.js'
 import { StaticModal, createStaticModal } from './StaticModal/StaticModal.js'
+import { createThreeButtonModal } from './ThreeButtonModal/ThreeButtonModal.js'
 import { YesNoModal, createYesNoModal } from './YesNoModal/YesNoModal.js'
 
 export {

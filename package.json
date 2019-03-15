@@ -1,6 +1,6 @@
 {
   "name": "edge-components",
-  "version": "0.0.20",
+  "version": "0.0.23",
   "repository": {
     "type": "git",
     "url": "git@github.com:Airbitz/edge-components.git"
@@ -13,17 +13,13 @@
   ],
   "main": "src/index.js",
   "scripts": {
+    "precommit": "yarn format",
     "flow": "flow",
     "format": "sort-package-json; import-sort -l --write '*.js' 'src/**/*.js' 'storybook/**/*.js'; prettier-eslint --write '*.js' 'src/**/*.js' 'storybook/**/*.js'",
     "jest": "jest",
     "lint": "eslint '*.js' 'src/**/*.js' 'storybook/**/*.js'",
     "start": "storybook start -p 7007",
     "test": "jest"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run precommit"
-    }
   },
   "prettier": {
     "printWidth": 120
@@ -70,6 +66,11 @@
     "react-test-renderer": "16.3.1",
     "sort-package-json": "^1.15.0",
     "storybook-addon-jsx": "^5.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
   },
   "importSort": {
     ".js, .es": {

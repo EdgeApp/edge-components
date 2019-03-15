@@ -6,7 +6,6 @@ import Gradient from './Gradient/Gradient.js'
 import { Icon } from './Icon/Icon.js'
 import {
   InputAndButtonStyle,
-  createThreeButtonModal,
   InputModal,
   MaterialInputStyle,
   Modal,
@@ -21,6 +20,7 @@ import {
   createSecureTextModal,
   createSimpleConfirmModal,
   createStaticModal,
+  createThreeButtonModal,
   createYesNoModal,
   showModal
 } from './Modals'
