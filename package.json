@@ -13,13 +13,25 @@
   ],
   "main": "src/index.js",
   "scripts": {
-    "precommit": "yarn format",
     "flow": "flow",
     "format": "sort-package-json; import-sort -l --write '*.js' 'src/**/*.js' 'storybook/**/*.js'; prettier-eslint --write '*.js' 'src/**/*.js' 'storybook/**/*.js'",
     "jest": "jest",
     "lint": "eslint '*.js' 'src/**/*.js' 'storybook/**/*.js'",
+    "precommit": "yarn format",
     "start": "storybook start -p 7007",
     "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "import-sort --list-different",
+      "prettier-eslint --list-different"
+    ]
   },
   "prettier": {
     "printWidth": 120
@@ -67,22 +79,10 @@
     "sort-package-json": "^1.15.0",
     "storybook-addon-jsx": "^5.3.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run precommit"
-    }
-  },
   "importSort": {
     ".js, .es": {
       "parser": "babylon",
       "style": "module"
     }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint",
-      "import-sort --list-different",
-      "prettier-eslint --list-different"
-    ]
   }
 }
