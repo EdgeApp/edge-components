@@ -236,7 +236,7 @@ export type ThreeButtonModalOpts = {
 }
 
 export const createThreeButtonModal = (opts: ThreeButtonModalOpts) =>
-  function threeButtonModal (props: { +onDone: Function }) {
+  function ThreeButtonModalComponent (props: { +onDone: Function }) {
     const textAlign = opts.textAlign ? opts.textAlign : 'center'
     const { primaryButton, secondaryButton, tertiaryButton } = opts
     return (

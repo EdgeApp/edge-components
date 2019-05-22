@@ -293,6 +293,6 @@ export type SecureTextModalOpts = {
 }
 
 export const createSecureTextModal = (opts: SecureTextModalOpts) =>
-  function SecureTextModal (props: { +onDone: Function }) {
+  function SecureTextModalComponent (props: { +onDone: Function }) {
     return <SecureTextModal {...opts} {...props} />
   }

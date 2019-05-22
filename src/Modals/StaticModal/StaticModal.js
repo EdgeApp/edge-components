@@ -56,7 +56,7 @@ export type StaticModalOpts = {
 }
 
 export const createStaticModal = (opts: StaticModalOpts) =>
-  function StaticModal (props: { +onDone: Function }) {
+  function StaticModalComponent (props: { +onDone: Function }) {
     return (
       <StaticModal
         message={opts.message}

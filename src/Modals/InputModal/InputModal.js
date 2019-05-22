@@ -279,6 +279,6 @@ export type InputModalOpts = {
 }
 
 export const createInputModal = (opts: InputModalOpts) =>
-  function InputModal (props: { +onDone: Function }) {
+  function InputModalComponent (props: { +onDone: Function }) {
     return <InputModal {...opts} {...props} />
   }
