@@ -229,7 +229,7 @@ export type SimpleConfirmModalOpts = {
 }
 
 export const createSimpleConfirmModal = (opts: SimpleConfirmModalOpts) =>
-  function SimpleConfirmModal (props: { +onDone: Function }) {
+  function SimpleConfirmModalComponent (props: { +onDone: Function }) {
     const textAlign = opts.textAlign ? opts.textAlign : 'center'
     return (
       <SimpleConfirmModal>

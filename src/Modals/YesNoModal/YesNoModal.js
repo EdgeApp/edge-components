@@ -230,7 +230,7 @@ export type YesNoModalOpts = {
 }
 
 export const createYesNoModal = (opts: YesNoModalOpts) =>
-  function YesNoModal (props: { +onDone: Function }) {
+  function YesNoModalComponent (props: { +onDone: Function }) {
     const textAlign = opts.textAlign ? opts.textAlign : 'center'
     return (
       <YesNoModal>
