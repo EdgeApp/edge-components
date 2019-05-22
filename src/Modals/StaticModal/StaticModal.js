@@ -15,7 +15,7 @@ type StaticModalProps = {
 }
 
 export class StaticModal extends Component<StaticModalProps> {
-  reset: TimeoutID
+  reset: any
 
   componentDidMount () {
     if (this.props.modalDismissTimerSeconds) {
