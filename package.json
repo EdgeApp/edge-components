@@ -11,6 +11,12 @@
     "Kevin Sullivan <kevin@edge.app>",
     "Kylan Hurt <kylan@edge.app>"
   ],
+  "files": [
+    "/CHANGELOG.md",
+    "/src/*",
+    "/package.json",
+    "/README.md"
+  ],
   "main": "src/index.js",
   "scripts": {
     "flow": "flow",
