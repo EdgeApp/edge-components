@@ -17,6 +17,7 @@ type Props = {
   showSecureCheckbox?: boolean,
   keyboardType?: string,
   returnKeyType: string,
+  inputAccessoryViewID?: string,
   error?: string,
   onFinish?: () => void,
   onFocus?: () => void,
