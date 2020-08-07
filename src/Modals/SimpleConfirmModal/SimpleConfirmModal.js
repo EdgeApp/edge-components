@@ -26,7 +26,7 @@ export class Container extends Component<ContainerProps> {
 
 // HEADER /////////////////////////////////////////////////////////////////////////////
 export type HeaderProps = {
-  children: Node,
+  children?: Node,
   style?: StyleSheet.Styles
 }
 export class Header extends Component<HeaderProps> {
