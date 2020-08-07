@@ -247,17 +247,14 @@ export class InputModal extends Component<InputModalProps, InputModalState> {
             </View>
           </InputModal.Body>
           <InputModal.Footer>
-            <InputModal.Row style={[InputAndButtonStyle.row]}>
-              <SecondaryButton onPress={() => this.props.onDone(null)} style={[InputAndButtonStyle.noButton]}>
-                <SecondaryButton.Text style={[InputAndButtonStyle.buttonText]}>
+            <InputModal.Row style={InputAndButtonStyle.row}>
+              <SecondaryButton onPress={() => this.props.onDone(null)} style={InputAndButtonStyle.noButton}>
+                <SecondaryButton.Text style={InputAndButtonStyle.buttonText}>
                   {this.props.noButton.title}
                 </SecondaryButton.Text>
               </SecondaryButton>
-              <PrimaryButton
-                onPress={() => this.props.onDone(this.state.value)}
-                style={[InputAndButtonStyle.yesButton]}
-              >
-                <PrimaryButton.Text style={[InputAndButtonStyle.buttonText]}>
+              <PrimaryButton onPress={() => this.props.onDone(this.state.value)} style={InputAndButtonStyle.yesButton}>
+                <PrimaryButton.Text style={InputAndButtonStyle.buttonText}>
                   {this.props.yesButton.title}
                 </PrimaryButton.Text>
               </PrimaryButton>

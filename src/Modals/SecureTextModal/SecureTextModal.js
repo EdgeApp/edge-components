@@ -263,14 +263,14 @@ export class SecureTextModal extends Component<SecureTextModalProps, SecureTextM
             </View>
           </SecureTextModal.Body>
           <SecureTextModal.Footer>
-            <SecureTextModal.Row style={[InputAndButtonStyle.row]}>
-              <SecondaryButton onPress={() => this.props.onDone(null)} style={[InputAndButtonStyle.noButton]}>
-                <SecondaryButton.Text style={[InputAndButtonStyle.buttonText]}>
+            <SecureTextModal.Row style={InputAndButtonStyle.row}>
+              <SecondaryButton onPress={() => this.props.onDone(null)} style={InputAndButtonStyle.noButton}>
+                <SecondaryButton.Text style={InputAndButtonStyle.buttonText}>
                   {this.props.noButton.title}
                 </SecondaryButton.Text>
               </SecondaryButton>
-              <PrimaryButton onPress={this.validateInput} style={[InputAndButtonStyle.yesButton]}>
-                <PrimaryButton.Text style={[InputAndButtonStyle.buttonText]}>
+              <PrimaryButton onPress={this.validateInput} style={InputAndButtonStyle.yesButton}>
+                <PrimaryButton.Text style={InputAndButtonStyle.buttonText}>
                   {this.props.yesButton.title}
                 </PrimaryButton.Text>
               </PrimaryButton>

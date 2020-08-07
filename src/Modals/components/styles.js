@@ -68,32 +68,32 @@ export const MaterialInputStyle = {
 }
 
 export const InputAndButtonStyle = StyleSheet.create({
-  buttonsArea: {
-    height: scale(52),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    alignSelf: 'flex-end',
-    paddingVertical: scale(4)
-  },
-  noButton: {
-    flex: 1,
-    marginRight: scale(2),
-    backgroundColor: THEME.COLORS.GRAY_2,
-    borderRadius: 3
-  },
   buttonText: {
     color: THEME.COLORS.WHITE,
     fontSize: scale(17.5)
   },
-  yesButton: {
+  buttonsArea: {
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    flexDirection: 'row',
+    height: scale(52),
+    justifyContent: 'space-between',
+    paddingVertical: scale(4)
+  },
+  noButton: {
+    backgroundColor: THEME.COLORS.GRAY_2,
+    borderRadius: 3,
     flex: 1,
-    marginLeft: scale(2),
-    backgroundColor: THEME.COLORS.SECONDARY,
-    borderRadius: 3
+    marginRight: scale(2)
   },
   tertiaryButtonRow: {
     marginBottom: scale(12)
+  },
+  yesButton: {
+    backgroundColor: THEME.COLORS.SECONDARY,
+    borderRadius: 3,
+    flex: 1,
+    marginLeft: scale(2)
   }
 })
 
