@@ -1,6 +1,6 @@
 {
   "name": "edge-components",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "repository": {
     "type": "git",
     "url": "git@github.com:Airbitz/edge-components.git"
@@ -11,13 +11,13 @@
     "Kevin Sullivan <kevin@edge.app>",
     "Kylan Hurt <kylan@edge.app>"
   ],
+  "main": "src/index.js",
   "files": [
     "/CHANGELOG.md",
     "/src/*",
     "/package.json",
     "/README.md"
   ],
-  "main": "src/index.js",
   "scripts": {
     "flow": "flow",
     "format": "import-sort -l --write '*.js' 'src/**/*.js' 'storybook/**/*.js'; prettier-eslint --write '*.js' 'src/**/*.js' 'storybook/**/*.js'",

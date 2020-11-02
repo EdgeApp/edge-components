@@ -1,5 +1,18 @@
 # edge-core-js
 
+## 0.0.29 (2020-11-02)
+
+- Remove unused comonents:
+  - IconButton
+  - ModalManager
+  - PasswordInput
+  - SimpleConfirmModal
+  - StaticModal
+  - TextAndIconButton
+  - TextButton
+  - ThreeButtonModal
+  - YesNoModal
+
 ## 0.0.28 (2020-08-07)
 
 - Fix compatibility with Flow v0.84.0.
