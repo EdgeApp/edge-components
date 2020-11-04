@@ -27,7 +27,7 @@ export const styles = StyleSheet.create(rawStyles)
 export type TextProps = {
   children?: Node,
   // $FlowFixMe
-  style?: StyleSheet.Styles
+  style?: Object
 }
 export class Text extends Component<TextProps> {
   render () {
@@ -44,7 +44,7 @@ export class Text extends Component<TextProps> {
 export type BodyProps = {
   children?: Node,
   // $FlowFixMe
-  style?: StyleSheet.Styles
+  style?: Object
 }
 export class Body extends Component<BodyProps> {
   static Text = Text

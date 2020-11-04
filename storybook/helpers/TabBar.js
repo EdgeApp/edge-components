@@ -35,8 +35,7 @@ const styles = StyleSheet.create(rawStyles)
 
 export type TabProps = {
   children?: Node,
-  // $FlowFixMe
-  style?: StyleSheet.Styles
+  style?: Object
 }
 export class Tab extends Component<TabProps> {
   render () {
@@ -47,8 +46,7 @@ export class Tab extends Component<TabProps> {
 
 export type TextProps = {
   children?: Node,
-  // $FlowFixMe
-  style?: StyleSheet.Styles
+  style?: Object
 }
 export class Text extends Component<TextProps> {
   render () {

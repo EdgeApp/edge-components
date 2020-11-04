@@ -28,8 +28,7 @@ export type Props = {
   colors?: Array<string>,
   start?: Coordinates,
   end?: Coordinates,
-  // $FlowFixMe
-  style?: StyleSheet.Styles
+  style?: Object
 }
 
 export class Gradient extends Component<Props> {
