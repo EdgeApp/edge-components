@@ -1,5 +1,9 @@
 # edge-core-js
 
+## 0.0.30 (2020-11-04)
+
+- Remove Icon component
+
 ## 0.0.29 (2020-11-02)
 
 - Remove unused comonents:
