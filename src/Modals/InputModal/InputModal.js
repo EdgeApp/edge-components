@@ -4,8 +4,9 @@ import React, { Component } from 'react'
 import type { Node } from 'react'
 import { Text, View } from 'react-native'
 
-import { PrimaryButton, SecondaryButton } from '../../Buttons'
-import { FormField } from '../../FormField'
+import { PrimaryButton } from '../../Buttons/PrimaryButton.js'
+import { SecondaryButton } from '../../Buttons/SecondaryButton.js'
+import { FormField } from '../../FormField/FormField.js'
 import { InputAndButtonStyle, MaterialInputStyle } from '../components/styles.js'
 import { styles } from '../ModalStyle.js'
 

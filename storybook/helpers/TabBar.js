@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import type { Node } from 'react'
 import { Text as RNText, StyleSheet, View } from 'react-native'
 
-import THEME from '../../src/edge-theme.js'
+import { THEME } from '../../src/edge-theme.js'
 
 const debugStyle = { borderColor: 'red', borderWidth: 1 }
 

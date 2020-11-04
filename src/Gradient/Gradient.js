@@ -5,7 +5,7 @@ import type { Node } from 'react'
 import { StyleSheet } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 
-import THEME from '../edge-theme.js'
+import { THEME } from '../edge-theme.js'
 
 type Coordinates = { x: number, y: number }
 

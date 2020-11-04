@@ -4,8 +4,9 @@ import React, { Component } from 'react'
 import type { Node } from 'react'
 import { Text, View } from 'react-native'
 
-import { PrimaryButton, SecondaryButton } from '../../Buttons'
-import { FormField } from '../../FormField'
+import { PrimaryButton } from '../../Buttons/PrimaryButton.js'
+import { SecondaryButton } from '../../Buttons/SecondaryButton.js'
+import { FormField } from '../../FormField/FormField.js'
 import { InputAndButtonStyle, MaterialInputStyle } from '../components/styles.js'
 import { styles } from '../ModalStyle.js'
 
@@ -269,7 +270,13 @@ export class SecureTextModal extends Component<SecureTextModalProps, SecureTextM
                   {this.props.noButton.title}
                 </SecondaryButton.Text>
               </SecondaryButton>
-              <PrimaryButton onPress={this.validateInput} style={InputAndButtonStyle.yesButton}>
+              <PrimaryButton
+                onPress={
+                  // $FlowFixMe
+                  this.validateInput
+                }
+                style={InputAndButtonStyle.yesButton}
+              >
                 <PrimaryButton.Text style={InputAndButtonStyle.buttonText}>
                   {this.props.yesButton.title}
                 </PrimaryButton.Text>
