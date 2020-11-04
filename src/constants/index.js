@@ -3,7 +3,6 @@
 export * from './Colors'
 export * from './Fonts'
 export * from './Theme'
-export * from './IconConstants'
 export * from './OtpConstants'
 
 /* export const LEFT_TO_RIGHT = 'leftToRight'

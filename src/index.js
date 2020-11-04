@@ -3,7 +3,6 @@
 import { PrimaryButton, SecondaryButton, TertiaryButton } from './Buttons'
 import { FormField } from './FormField'
 import Gradient from './Gradient/Gradient.js'
-import { Icon } from './Icon/Icon.js'
 import {
   InputAndButtonStyle,
   InputModal,
@@ -28,6 +27,5 @@ export {
   Scene,
   PrimaryButton,
   SecondaryButton,
-  TertiaryButton,
-  Icon
+  TertiaryButton
 }
