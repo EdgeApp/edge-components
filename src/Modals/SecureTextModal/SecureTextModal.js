@@ -172,13 +172,13 @@ export class Row extends Component<RowProps> {
 type SecureTextModalProps = {
   isActive?: boolean,
   style?: StyleSheet.Styles,
-  input: {
+  input: {|
     label: string,
     autoCorrect?: boolean,
-    returnKeyType: string,
+    keyboardType?: 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad',
     initialValue?: string,
     autoFocus?: boolean
-  },
+  |},
   yesButton: {
     title: string
   },

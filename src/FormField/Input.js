@@ -16,13 +16,13 @@ type Props = {
   errorColor: string,
   titleTextStyle: Object,
   secureTextEntry: boolean,
-  autoCapitalize: string,
+  autoCapitalize: 'none' | 'sentences' | 'words' | 'characters',
   autoCorrect: boolean,
   autoFocus: boolean,
   forceFocus: boolean,
-  returnKeyType: string,
+  returnKeyType: 'done' | 'go' | 'next' | 'search' | 'send',
   inputContainerStyle: Object,
-  keyboardType?: string,
+  keyboardType?: 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad',
   inputAccessoryViewID?: string,
   onFocus(): void,
   onBlur(): void,
@@ -113,7 +113,7 @@ class Input extends Component<Props, State> {
     )
   }
 
-  addRef = (arg: TextField) => {
+  addRef = (arg: TextField | null) => {
     if (arg) {
       this.textInput = arg
     }

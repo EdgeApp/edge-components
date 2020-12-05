@@ -172,14 +172,14 @@ export class Row extends Component<RowProps> {
 type InputModalProps = {
   isActive?: boolean,
   style?: StyleSheet.Styles,
-  input: {
+  input: {|
     label: string,
     autoCorrect?: boolean,
-    returnKeyType: string,
+    returnKeyType: 'done' | 'go' | 'next' | 'search' | 'send',
     initialValue?: string,
     autoFocus?: boolean,
-    keyboardType?: string
-  },
+    keyboardType?: 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad'
+  |},
   yesButton: {
     title: string
   },
