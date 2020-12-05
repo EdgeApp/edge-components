@@ -1,5 +1,9 @@
 # edge-core-js
 
+## 0.0.31 (2020-12-04)
+
+- Fix the react-native-material-textfield Flow types.
+
 ## 0.0.30 (2020-11-04)
 
 - Remove Icon component
